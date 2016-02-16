@@ -7,9 +7,8 @@ This role provides support for the installation of HAproxy on current distributi
  - RedHat **7.x**
  - Ubuntu **14.xx** / **15.xx**
  - Debian **7.x** / **8.x**
- 
+
  The role allows you to configure multiple sections of HAproxy:
- 
  - Global section
  - Default section
  - Listen section
@@ -123,7 +122,7 @@ None
 Example Playbook
 ----------------
 
-The below examples show you how to define ``frontend``, ``backend``, ``listen``, ``peer``
+The below examples show you how to define ``frontend``, ``backend``, ``listen``, ``peer``.
 
 ```
 # Frontend
