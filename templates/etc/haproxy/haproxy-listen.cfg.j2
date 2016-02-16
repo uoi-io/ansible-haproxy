@@ -1,0 +1,77 @@
+{% if haproxy_listen %}
+##########################
+#        LISTENS         #
+##########################
+    {% for dict_item in haproxy_listen %}
+        {% for name, value in dict_item.items() %}
+listen {{ name }}
+            {% if value.mode is defined %}
+    mode            {{ value.mode }}
+            {% endif %}
+            {% if value.description is defined %}
+    description     {{ value.description }}
+            {% endif %}
+            {% if value.binds is defined %}
+                {% for bind in value.binds %}
+    bind            {{ bind }}
+                {% endfor %}
+            {% endif %}
+            {% if value.binds_ssl is defined %}
+                {% for bind_ssl in value.binds_ssl %}
+    bind            {{ bind_ssl }}
+                {% endfor %}
+            {% endif %}
+            {% if value.bind_process is defined %}
+    bind-process    {{ value.bind_process | join(' ') }}
+            {% endif %}
+            {% if value.balance is defined %}
+    balance         {{ value.balance }}
+            {% endif %}
+            {% if value.options is defined %}
+                {% for opt in value.options %}
+    option          {{ opt }}
+                {% endfor %}
+            {% endif %}
+            {% if value.acls is defined %}
+                {% for acl in value.acls %}
+    acl             {{ acl }}
+                {% endfor %}
+            {% endif %}
+            {% if value.http_requests is defined %}
+                {% for http_request in value.http_requests %}
+    http-request    {{ http_request }}
+                {% endfor %}
+            {% endif %}
+            {% if value.tcp_requests is defined %}
+                {% for tcp_request in value.tcp_requests %}
+    tcp-request     {{ tcp_request }}
+                {% endfor %}
+            {% endif %}
+            {% if value.tcp_checks is defined %}
+                {% for tcp_check in value.tcp_checks %}
+    tcp-check       {{ tcp_check }}
+                {% endfor %}
+            {% endif %}
+            {% if value.redirects is defined %}
+                {% for redirect in value.redirects %}
+    redirect        {{ redirect }}
+                {% endfor %}
+            {% endif %}
+            {% if value.retries is defined %}
+    retires         {{ value.retries }}
+            {% endif %}
+            {% if value.stick_table is defined %}
+    stick-table     {{ value.stick_table }}
+            {% endif %}
+            {% if value.sticks is defined %}
+                {% for stick in value.sticks %}
+    stick           {{ stick }}
+                {% endfor %}
+            {% endif %}
+            {% for srv in value.servers %}
+    server          {{ srv }}
+            {% endfor %}
+        {% endfor %}
+
+    {% endfor %}
+{% endif %}

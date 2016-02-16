@@ -1,0 +1,76 @@
+{% if haproxy_frontend %}
+##########################
+#       FRONTENDS        #
+##########################
+    {% for dict_item in haproxy_frontend %}
+        {% for name, value in dict_item.items() %}
+frontend {{ name }}
+            {% if value.mode is defined %}
+    mode            {{ value.mode }}
+            {% endif %}
+            {% if value.description is defined %}
+    description     {{ value.description }}
+            {% endif %}
+            {% if value.binds is defined %}
+                {% for bind in value.binds %}
+    bind            {{ bind }}
+                {% endfor %}
+            {% endif %}
+            {% if value.binds_ssl is defined %}
+                {% for bind_ssl in value.binds_ssl %}
+    bind            {{ bind_ssl }}
+                {% endfor %}
+            {% endif %}
+            {% if value.bind_process is defined %}
+    bind-process    {{ value.bind_process | join(' ') }}
+            {% endif %}
+            {% if value.options is defined %}
+                {% for opt in value.options %}
+    option          {{ opt }}
+                {% endfor %}
+            {% endif %}
+            {% if value.acls is defined %}
+                {% for acl in value.acls %}
+    acl             {{ acl }}
+                {% endfor %}
+            {% endif %}
+            {% if value.http_requests is defined %}
+                {% for http_request in value.http_requests %}
+    http-request    {{ http_request }}
+                {% endfor %}
+            {% endif %}
+            {% if value.tcp_requests is defined %}
+                {% for tcp_request in value.tcp_requests %}
+    tcp-request     {{ tcp_request }}
+                {% endfor %}
+            {% endif %}
+            {% if value.reqadds is defined %}
+                {% for reqadd in value.reqadds %}
+    reqadd          {{ reqadd }}
+                {% endfor %}
+            {% endif %}
+            {% if value.use_backends is defined %}
+                {% for use_backend in value.use_backends %}
+    use_backend     {{ use_backend }}
+                {% endfor %}
+            {% endif %}
+            {% if value.redirects is defined %}
+                {% for redirect in value.redirects %}
+    redirect        {{ redirect }}
+                {% endfor %}
+            {% endif %}
+            {% if value.logs is defined %}
+                {% for log in value.logs %}
+    log             {{ log }}
+                {% endfor %}
+            {% endif %}
+            {% if value.stick_table is defined %}
+    stick-table     {{ value.stick_table }}
+            {% endif %}
+            {% if value.default_backend is defined %}
+    default_backend {{ value.default_backend }}
+            {% endif %}
+        {% endfor %}
+
+    {% endfor %}
+{% endif %}

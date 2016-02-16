@@ -1,0 +1,18 @@
+---
+# file: roles/haproxy/tasks/install.yml
+- name: Installing HAproxy package
+  package:
+    name=haproxy
+    state=latest
+  tags:
+    - haproxy
+    - haproxy-install
+
+- name: Enabling and starting HAproxy service
+  service:
+    name=haproxy
+    state=started
+    enabled=yes
+  tags:
+    - haproxy
+    - haproxy-install

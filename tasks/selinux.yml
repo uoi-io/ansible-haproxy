@@ -1,0 +1,20 @@
+---
+# file: roles/haproxy/tasks/selinux.yml
+- name: Allowing HAproxy to listen on some TCP ports
+  seport:
+    ports=9001
+    proto=tcp
+    setype=tor_port_t
+    state=present
+  tags:
+    - haproxy
+    - haproxy-selinux
+
+- name: Enabling SELinux booleans for HAproxy
+  seboolean:
+    name=haproxy_connect_any
+    state=yes
+    persistent=yes
+  tags:
+    - haproxy
+    - haproxy-selinux

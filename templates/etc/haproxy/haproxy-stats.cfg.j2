@@ -1,0 +1,21 @@
+{% if haproxy_stats %}
+##########################
+#         STATS          #
+##########################
+listen stats
+    bind       {{ haproxy_stats_address }}:{{ haproxy_stats_port }}
+    mode       http
+    maxconn    10
+    stats      enable
+    stats      refresh 20s
+    stats      show-legends
+    stats      show-node
+    stats      hide-version
+    stats      realm Haproxy\ Statistics
+    stats      uri {{ haproxy_stats_uri }}
+    stats      auth {{ haproxy_stats_user }}:{{ haproxy_stats_password }}
+    timeout    client 100s
+    timeout    server 100s
+    timeout    connect 100s
+    timeout    queue 100s
+{% endif %}

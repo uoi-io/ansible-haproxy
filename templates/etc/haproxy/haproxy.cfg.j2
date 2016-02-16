@@ -1,0 +1,20 @@
+#jinja2: lstrip_blocks: True
+# {{ ansible_managed }}
+
+{# GLOBAL CONFIGURATION #}
+{% include 'haproxy-global.cfg.j2' %}
+
+{# DEFAULT CONFIGURATION #}
+{% include 'haproxy-default.cfg.j2' %}
+
+{# STATS CONFIGURATION #}
+{% include 'haproxy-stats.cfg.j2' %}
+
+{# PEER CONFIGURATION #}
+{% include 'haproxy-peer.cfg.j2' %}
+{# LISTEN CONFIGURATION #}
+{% include 'haproxy-listen.cfg.j2' %}
+{# FRONTEND CONFIGURATION #}
+{% include 'haproxy-frontend.cfg.j2' %}
+{# BACKEND CONIGURATION #}
+{% include 'haproxy-backend.cfg.j2' %}

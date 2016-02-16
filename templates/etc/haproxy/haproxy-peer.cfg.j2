@@ -1,0 +1,14 @@
+{% if haproxy_peer %}
+##########################
+#          PEERS         #
+##########################
+    {% for dict_item in haproxy_peer %}
+        {% for name, value in dict_item.items() %}
+peers {{ name }}
+            {% for peer in value.peers %}
+    peer            {{ peer }}
+            {% endfor %}
+        {% endfor %}
+
+    {% endfor %}
+{% endif %}

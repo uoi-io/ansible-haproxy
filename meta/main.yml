@@ -1,0 +1,39 @@
+galaxy_info:
+  author: Gaëtan Trellu - goldyfruit
+  description: Install and configure HAproxy
+  company: InCloudUs
+  
+  issue_tracker_url: https://github.com/uoi-io/ansible-haproxy/issues
+  
+  license: Apache
+  
+  min_ansible_version: 2.0
+
+  github_branch: https://github.com/uoi-io/ansible-haproxy
+  
+  platforms:
+  - name: EL
+    versions:
+    - 7
+  - name: Fedora
+    versions:
+    - 22
+    - 23
+  - name: Ubuntu
+    versions:
+    - trusty
+    - utopic
+    - vivid
+    - wily
+  - name: Debian
+    versions:
+    - jessie
+    - wheezy
+  
+  galaxy_tags:
+    - cloud
+    - system
+    - network
+    - loadbalancer
+
+dependencies: []

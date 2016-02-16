@@ -1,0 +1,11 @@
+---
+# file: roles/haproxy/tasks/config.yml
+- name: Configuring HAproxy
+  template:
+    src=etc/haproxy/haproxy.cfg.j2
+    dest=/etc/haproxy/haproxy.cfg
+    validate='haproxy -f %s -c'
+  notify: restart haproxy
+  tags:
+    - haproxy
+    - haproxy-config

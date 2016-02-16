@@ -1,0 +1,64 @@
+##########################
+#         GLOBAL         #
+##########################
+global
+    chroot     {{ haproxy_global_chroot | default('/var/lib/haproxy') }}
+{% if haproxy_global_daemon %}
+    daemon
+    {% if haproxy_global_nbproc %}
+    nbproc     {{ haproxy_global_nbproc }}
+       {% if haproxy_global_cpu_maps %}
+           {% for cpu_map in haproxy_global_cpu_maps %}
+    cpu-map    {{ cpu_map }}
+           {% endfor %}
+       {% endif %}
+    {% endif %}
+{% endif %}
+    user       {{ haproxy_global_user | default('haproxy') }}
+{% if haproxy_global_uid %}
+    uid        {{ haproxy_global_uid }}
+{% endif %}
+    group      {{ haproxy_global_group | default('haproxy') }}
+{% if haproxy_global_gid %}
+    gid        {{ haproxy_global_gid }}
+{% endif %}
+    maxconn    {{ haproxy_global_maxconn | default('4000') }}
+    pidfile    {{ haproxy_global_pidfile | default('/var/run/haproxy.pid') }}
+{% if haproxy_global_ca_base %}
+    ca-base    {{ haproxy_global_ca_base }}
+{% endif %}
+{% if haproxy_global_crt_base %}
+    crt_base   {{ haproxy_global_crt_base }}
+{% endif %}
+{% if haproxy_global_ssl_options %}
+    ssl-default-bind-options    {{ haproxy_global_ssl_options }}
+{% endif %}
+{% if haproxy_global_ssl_ciphers %}
+    ssl-default-bind-ciphers    {{ haproxy_global_ssl_ciphers }}
+{% endif %}
+{% if haproxy_global_ssl_server_verify %}
+    ssl-server-verify           {{ haproxy_global_ssl_server_verify }}
+{% endif %}
+{% if haproxy_global_stats is defined %}
+    {% for stat in haproxy_global_stats %}
+    stat       {{ stats }}
+    {% endfor %}
+{% endif %}
+{% if haproxy_global_description %}
+    description    {{ haproxy_global_description }}
+{% endif %}
+{% if haproxy_global_ulimit_n %}
+    ulimit-n   {{ haproxy_global_ulimit_n }}
+{% endif %}
+{% if haproxy_global_logs is defined %}
+    {% for log in haproxy_global_logs %}
+    log        {{ log }}
+    {% endfor %}
+{% endif %}
+{% if haproxy_global_tunes is defined %}
+    {% for tune in haproxy_global_tunes %}
+        {% for key, value in tune.items() %}
+    {{ key }}    {{ value }}
+        {% endfor %}
+    {% endfor %}
+{% endif %}

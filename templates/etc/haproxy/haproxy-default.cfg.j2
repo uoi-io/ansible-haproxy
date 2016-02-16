@@ -1,0 +1,26 @@
+##########################
+#        DEFAULT         #
+##########################
+defaults
+{% if haproxy_global_logs is defined %}
+    {% for log in haproxy_global_logs %}
+    log        {{ log }}
+    {% endfor %}
+{% endif %}
+    maxconn    {{ haproxy_default_maxconn | default('4000') }}
+    retries    {{ haproxy_default_retries |default('3') }}
+{% if haproxy_default_options %}
+    {% for opt in haproxy_default_options %}
+    option     {{ opt }}
+    {% endfor %}
+{% endif %}
+{% if haproxy_default_timeouts %}
+    {% for timeout in haproxy_default_timeouts %}
+    timeout    {{ timeout }}
+    {% endfor %}
+{% endif %}
+{% if haproxy_default_errorfiles is defined %}
+    {% for errorfile in haproxy_default_errorfiles %}
+    errorfile  {{ errorfile }}
+    {% endfor %}
+{% endif %}
