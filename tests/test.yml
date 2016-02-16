@@ -3,3 +3,80 @@
   remote_user: root
   roles:
     - ansible-haproxy
+
+  vars:
+    # Frontend
+    haproxy_frontend:
+      - dashboard_cluster:
+          binds_ssl:
+            - :443 ssl crt /etc/ssl/uoi.io/uoi.io.pem no-sslv3
+          reqadds:
+            - X-Forwarded-Proto:\ https
+          default_backend: dashboard_backend
+          logs:
+            - 127.0.0.1 local0 debug
+          acls:
+            - url_static path_beg -i /static /images /javascript /stylesheets
+            - url_static path_end -i .jpg .gif .png .css .js
+          bind_process:
+            - 1
+          use_backends:
+            - static if url_static
+    
+    # Backend
+    haproxy_backend:
+      - dashboard_backend:
+          balance: source
+          bind_process:
+            - 1
+          servers:
+            - ctrl01 10.0.0.67:80 check inter 2000 rise 2 fall 5
+            - ctrl02 10.0.0.68:80 check inter 2000 rise 2 fall 5
+            - ctrl03 10.0.0.69:80 check inter 2000 rise 2 fall 5
+      - static:
+          balance: roundrobin
+          bind_process:
+            - 1
+          servers:
+            - ctrl01 10.0.0.67:8080 check
+            - ctrl02 10.0.0.68:8080 check
+            - ctrl03 10.0.0.69:8080 check
+    
+    # Listen
+    haproxy_listen:
+      - dashboard_cluster:
+          mode: http
+          description: Horizon Dashboard
+          balance: source
+          binds:
+            - 10.0.0.100:512
+          binds_ssl:
+            - :443 ssl crt /etc/ssl/uoi.io/uoi.io.pem no-sslv3
+          options: [ tcpka, httpchk, tcplog ]
+          bind_process:
+            - 1
+          http_requests:
+            - set-header X-Haproxy-Current-Date %T
+          servers:
+            - ctrl01 10.0.0.67:80 check inter 2000 rise 2 fall 5
+            - ctrl02 10.0.0.68:80 check inter 2000 rise 2 fall 5
+            - ctrl03 10.0.0.69:80 check inter 2000 rise 2 fall 5
+    
+      - neutron_api_cluster:
+          binds_ssl:
+            - 10.0.0.100:9696 {{ haproxy_ssl }}
+          options: [ tcpka, httpchk, tcplog ]
+          bind_process: [ 2, 3, 4, 5, 6, 7 ]
+          balance: source
+          servers:
+            - ctrl01 10.0.0.62:9696 check inter 2000 rise 2 fall 5
+            - ctrl02 10.0.0.63:9696 check inter 2000 rise 2 fall 5
+            - ctrl03 10.0.0.64:9696 check inter 2000 rise 2 fall 5
+    
+    # Peer
+    haproxy_peer:
+      - remote_peers:
+          peers:
+            - lb223 10.0.0.223:1024
+            - lb224 10.0.0.224:1024
+            - lb225 10.0.0.225:1024
