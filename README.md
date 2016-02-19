@@ -175,6 +175,9 @@ haproxy_listen:
       binds_ssl:
         - :443 ssl crt /etc/ssl/uoi.io/uoi.io.pem no-sslv3
       options: [ tcpka, httpchk, tcplog ]
+      timeouts:
+        - client 90m
+        - server 90m
       bind_process:
         - 1
       http_requests:
