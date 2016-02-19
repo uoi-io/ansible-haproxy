@@ -9,7 +9,7 @@ galaxy_info:
   
   min_ansible_version: 2.0
 
-  github_branch: https://github.com/uoi-io/ansible-haproxy
+  github_branch: master
   
   platforms:
   - name: EL
