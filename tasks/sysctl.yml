@@ -4,7 +4,8 @@
   sysctl:
     name=net.ipv4.ip_nonlocal_bind
     value=1
-    sysctl_file=/etc/sysctl.d/10-ip_nonlocal_bind
+    sysctl_file=/etc/sysctl.d/10-ip_nonlocal_bind.conf
+    sysctl_set=yes
     reload=yes
     state=present
   notify: restart haproxy
@@ -17,7 +18,8 @@
   sysctl:
     name=net.ipv4.ip_forward
     value=1
-    sysctl_file=/etc/sysctl.d/10-ip_forward
+    sysctl_file=/etc/sysctl.d/10-ip_forward.conf
+    sysctl_set=yes
     reload=yes
     state=present
   when: haproxy_ip_forward is defined and haproxy_ip_forward == true
