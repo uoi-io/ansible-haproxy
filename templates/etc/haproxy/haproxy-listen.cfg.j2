@@ -32,6 +32,11 @@ listen {{ name }}
     option          {{ opt }}
                 {% endfor %}
             {% endif %}
+            {% if value.timeouts is defined %}
+                {% for timeout in value.timeouts %}
+    timeout         {{ timeout }}
+                {% endfor %}
+            {% endif %}
             {% if value.acls is defined %}
                 {% for acl in value.acls %}
     acl             {{ acl }}
