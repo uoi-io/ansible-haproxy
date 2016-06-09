@@ -1,12 +1,9 @@
 ---
-# file: roles/haproxy/tasks/install.yml
-- name: Installing HAproxy package
-  package:
-    name=haproxy
-    state=latest
-  tags:
-    - haproxy
-    - haproxy-install
+- include: install-Debian.yml
+  when: ansible_os_family == "Debian"
+
+- include: install-Generic.yml
+  when: ansible_os_family != "Debian"
 
 - name: Enabling and starting HAproxy service
   service:

@@ -1,0 +1,10 @@
+---
+# file: roles/haproxy/tasks/install-Generic.yml
+- name: Installing HAproxy package
+  package:
+    name=haproxy
+    state=latest
+  tags:
+    - haproxy
+    - haproxy-install
+

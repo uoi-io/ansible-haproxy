@@ -5,7 +5,7 @@
     src=etc/haproxy/haproxy.cfg.j2
     dest=/etc/haproxy/haproxy.cfg
     validate='haproxy -f %s -c'
-  notify: restart haproxy
+  notify: reload haproxy
   tags:
     - haproxy
     - haproxy-config
