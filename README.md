@@ -8,7 +8,8 @@ This role provides support for the installation of HAproxy on current distributi
  - Ubuntu **14.xx** / **15.xx**
  - Debian **7.x** / **8.x**
 
- The role allows you to configure multiple sections of HAproxy:
+The role allows you to configure multiple sections of HAproxy:
+ 
  - Global section
  - Default section
  - Listen section
@@ -20,7 +21,7 @@ This role provides support for the installation of HAproxy on current distributi
 Requirements
 ------------
 
-This role requires at least HAproxy **1.5** *(SSL native support)* and Ansible **2.0**.
+This role requires at least HAproxy **1.5** *(SSL native support)* and Ansible **2.x**.
 
 Role Variables
 --------------
@@ -47,6 +48,7 @@ haproxy_ip_forward: true
 # Common
 haproxy_firewalld: true
 haproxy_selinux: true
+haproxy_apt_backports: false
 
 # Firewall
 haproxy_fw_ports:
