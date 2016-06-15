@@ -42,6 +42,9 @@ backend {{ name }}
     tcp-check       {{ tcp_check }}
                 {% endfor %}
             {% endif %}
+            {% if value.http_check is defined %}
+    http-check       {{ value.http_check }}
+            {% endif %}
             {% if value.redirects is defined %}
                 {% for redirect in value.redirects %}
     redirect        {{ redirect }}
