@@ -11,9 +11,11 @@ listen stats
     stats      show-legends
     stats      show-node
     stats      hide-version
-    stats      realm Haproxy\ Statistics
     stats      uri {{ haproxy_stats_uri }}
+    {% if haproxy_stats_auth %}
+    stats      realm Haproxy\ Statistics
     stats      auth {{ haproxy_stats_user }}:{{ haproxy_stats_password }}
+    {% endif %}
     timeout    client 100s
     timeout    server 100s
     timeout    connect 100s
