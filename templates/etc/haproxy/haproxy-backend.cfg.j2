@@ -51,7 +51,7 @@ backend {{ name }}
                 {% endfor %}
             {% endif %}
             {% if value.retries is defined %}
-    retires         {{ value.retries }}
+    retries         {{ value.retries }}
             {% endif %}
             {% if value.stick_table is defined %}
     stick-table     {{ value.stick_table }}
