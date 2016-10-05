@@ -14,6 +14,9 @@ backend {{ name }}
             {% if value.balance is defined %}
     balance         {{ value.balance }}
             {% endif %}
+            {% if value.cookie is defined %}
+    cookie          {{ value.cookie }}
+            {% endif %}
             {% if value.bind_process is defined %}
     bind-process    {{ value.bind_process | join(' ') }}
             {% endif %}

@@ -5,8 +5,8 @@ This role provides support for the installation of HAproxy on current distributi
 
  - CentOS **7.x**
  - RedHat **7.x**
- - Ubuntu **14.xx** / **15.xx**
- - Debian **7.x** / **8.x**
+ - Ubuntu **14.xx** / **15.xx** / **16.xx**
+ - Debian **7.x** / **8.x** / **9.x**
 
 The role allows you to configure multiple sections of HAproxy:
  
@@ -173,10 +173,11 @@ haproxy_listen:
       description: Horizon Dashboard
       balance: source
       binds:
-        - 10.0.0.100:512
+        - 10.0.0.100:80
       binds_ssl:
         - :443 ssl crt /etc/ssl/uoi.io/uoi.io.pem no-sslv3
       options: [ tcpka, httpchk, tcplog ]
+      cookie: SERVERID insert indirect nocache
       timeouts:
         - client 90m
         - server 90m
@@ -185,9 +186,9 @@ haproxy_listen:
       http_requests:
         - set-header X-Haproxy-Current-Date %T
       servers:
-        - ctrl01 10.0.0.67:80 check inter 2000 rise 2 fall 5
-        - ctrl02 10.0.0.68:80 check inter 2000 rise 2 fall 5
-        - ctrl03 10.0.0.69:80 check inter 2000 rise 2 fall 5
+        - ctrl01 10.0.0.67:80 check cookie ctrl01inter 2000 rise 2 fall 5
+        - ctrl02 10.0.0.68:80 check cookie ctrl02 inter 2000 rise 2 fall 5
+        - ctrl03 10.0.0.69:80 check cookie ctrl03 inter 2000 rise 2 fall 5
 
   - neutron_api_cluster:
       binds_ssl:
