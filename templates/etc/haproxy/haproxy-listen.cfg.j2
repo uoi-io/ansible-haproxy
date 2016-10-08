@@ -27,6 +27,9 @@ listen {{ name }}
             {% if value.balance is defined %}
     balance         {{ value.balance }}
             {% endif %}
+            {% if value.http_check is defined %}
+    http-check      {{ value.http_check }}
+            {% endif %}
             {% if value.cookie is defined %}
     cookie          {{ value.cookie }}
             {% endif %}

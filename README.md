@@ -171,12 +171,13 @@ haproxy_listen:
   - dashboard_cluster:
       mode: http
       description: Horizon Dashboard
-      balance: source
+      balance: roundrobin
       binds:
         - 10.0.0.100:80
       binds_ssl:
         - :443 ssl crt /etc/ssl/uoi.io/uoi.io.pem no-sslv3
       options: [ tcpka, httpchk, tcplog ]
+      http-check: GET /auth/login
       cookie: SERVERID insert indirect nocache
       timeouts:
         - client 90m
