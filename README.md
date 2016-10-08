@@ -1,6 +1,9 @@
 Ansible HAproxy (OpenStack ready)
 =========
 
+
+[![Build Status](https://travis-ci.org/uoi-io/ansible-haproxy.svg?branch=master)](https://travis-ci.org/uoi-io/ansible-haproxy) [![Ansible Galaxy](https://img.shields.io/badge/galaxy-uoi.haproxy-green.svg?style=flat)](https://galaxy.ansible.com/uoi-io/haproxy/)
+
 This role provides support for the installation of HAproxy on current distributions:
 
  - CentOS **7.x**
