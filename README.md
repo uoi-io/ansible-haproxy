@@ -111,6 +111,11 @@ haproxy_stats_port: 9001
 haproxy_stats_user: haproxy-stats
 haproxy_stats_password: B1Gp4sSw0rD!!
 haproxy_stats_uri: /
+haproxy_stats_options:
+  - refresh 20s
+  - show-legends
+  - show-node
+  - hide-version
 
 # SSL
 haproxy_ssl_certificate: /etc/ssl/uoi.io/uoi.io.pem
