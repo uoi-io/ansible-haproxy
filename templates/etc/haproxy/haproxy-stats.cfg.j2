@@ -7,10 +7,9 @@ listen stats
     mode       http
     maxconn    10
     stats      enable
-    stats      refresh 20s
-    stats      show-legends
-    stats      show-node
-    stats      hide-version
+{% for opt in haproxy_stats_optsions %}
+    stats      {{ opt }}
+{% endfor %}
     stats      uri {{ haproxy_stats_uri }}
     {% if haproxy_stats_auth %}
     stats      realm Haproxy\ Statistics
