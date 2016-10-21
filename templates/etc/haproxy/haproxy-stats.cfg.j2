@@ -7,7 +7,7 @@ listen stats
     mode       http
     maxconn    10
     stats      enable
-{% for opt in haproxy_stats_optsions %}
+{% for opt in haproxy_stats_options %}
     stats      {{ opt }}
 {% endfor %}
     stats      uri {{ haproxy_stats_uri }}

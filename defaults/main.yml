@@ -70,7 +70,7 @@ haproxy_stats_auth: true
 haproxy_stats_user: haproxy-stats
 haproxy_stats_password: B1Gp4sSw0rD!!
 haproxy_stats_uri: /
-haproxy_stats_optsions:
+haproxy_stats_options:
   - refresh 20s
   - show-legends
   - show-node
