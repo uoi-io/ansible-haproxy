@@ -1,9 +1,28 @@
 ---
 # file: roles/haproxy/tasks/main.yml
+- include_vars: "{{ ansible_os_family }}.yml"
+  tags:
+    - haproxy
+    - haproxy-install
+    - haproxy-firewall
+    - haproxy-selinux
+    - haproxy-config
+    - haproxy-sysctl
+
 - include: install.yml
+  tags: [ haproxy, haproxy-install ]
+
 - include: firewall.yml
-  when: haproxy_firewalld is defined and haproxy_firewalld == true
+  tags: [ haproxy, haproxy-firewall ]
+  when: haproxy_firewalld is defined and
+        haproxy_firewalld | bool
+
 - include: selinux.yml
-  when: haproxy_selinux is defined and haproxy_selinux == true
+  tags: [ haproxy, haproxy-selinux ]
+  when: haproxy_selinux | bool
+
 - include: config.yml
+  tags: [ haproxy, haproxy-config ]
+
 - include: sysctl.yml
+  tags: [ haproxy, haproxy-sysctl ]
