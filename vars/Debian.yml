@@ -1,0 +1,3 @@
+---
+# file: roles/haproxy/vars/Debian.yml
+haproxy_errors_directory: /etc/haproxy/errors

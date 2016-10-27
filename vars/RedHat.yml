@@ -1,0 +1,3 @@
+---
+# file: roles/haproxy/vars/RedHat.yml
+haproxy_errors_directory: /usr/share/haproxy
