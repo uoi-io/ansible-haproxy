@@ -6,6 +6,3 @@
     dest=/etc/haproxy/haproxy.cfg
     validate='haproxy -f %s -c'
   notify: reload haproxy
-  tags:
-    - haproxy
-    - haproxy-config

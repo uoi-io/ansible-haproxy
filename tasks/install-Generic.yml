@@ -4,7 +4,3 @@
   package:
     name=haproxy
     state=latest
-  tags:
-    - haproxy
-    - haproxy-install
-

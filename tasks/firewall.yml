@@ -7,6 +7,3 @@
     state=enabled
     immediate=true
   with_items: "{{ haproxy_fw_ports }}"
-  tags:
-    - haproxy
-    - haproxy-firewall
