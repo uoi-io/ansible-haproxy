@@ -33,6 +33,11 @@ listen {{ name }}
             {% if value.cookie is defined %}
     cookie          {{ value.cookie }}
             {% endif %}
+            {% if value.capture is defined %}
+                {% for cap in value.capture %}
+    capture         {{ cap }}
+                {% endfor %}
+            {% endif %}
             {% if value.options is defined %}
                 {% for opt in value.options %}
     option          {{ opt }}

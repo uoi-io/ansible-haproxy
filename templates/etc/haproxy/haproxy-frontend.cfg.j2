@@ -24,6 +24,11 @@ frontend {{ name }}
             {% if value.bind_process is defined %}
     bind-process    {{ value.bind_process | join(' ') }}
             {% endif %}
+            {% if value.capture is defined %}
+                {% for cap in value.capture %}
+    capture         {{ cap }}
+                {% endfor %}
+            {% endif %}
             {% if value.options is defined %}
                 {% for opt in value.options %}
     option          {{ opt }}
