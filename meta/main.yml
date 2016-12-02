@@ -19,21 +19,27 @@ galaxy_info:
     versions:
     - 22
     - 23
+    - 24
+    - 25
   - name: Ubuntu
     versions:
     - trusty
     - utopic
     - vivid
     - wily
+    - xenial
+    - yakkety
   - name: Debian
     versions:
     - jessie
     - wheezy
-  
+    - stretch
+
   galaxy_tags:
     - cloud
     - system
     - network
     - loadbalancer
+    - openstack
 
 dependencies: []
