@@ -2,8 +2,8 @@
 #        DEFAULT         #
 ##########################
 defaults
-{% if haproxy_global_logs is defined %}
-    {% for log in haproxy_global_logs %}
+{% if haproxy_default_logs is defined %}
+    {% for log in haproxy_default_logs %}
     log        {{ log }}
     {% endfor %}
 {% endif %}

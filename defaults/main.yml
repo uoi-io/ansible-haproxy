@@ -40,7 +40,7 @@ haproxy_global_tunes:
   - tune.ssl.default-dh-param: 2048
 
 # Default
-haproxy_default_log:
+haproxy_default_logs:
   - global
 haproxy_default_mode:
 haproxy_default_maxconn: 4000
