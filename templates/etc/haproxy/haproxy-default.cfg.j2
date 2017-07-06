@@ -24,3 +24,6 @@ defaults
     errorfile  {{ errorfile }}
     {% endfor %}
 {% endif %}
+{% if haproxy_default_mode is defined %}
+    mode       {{ haproxy_default_mode }}
+{% endif %}
