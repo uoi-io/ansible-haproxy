@@ -78,6 +78,9 @@ listen {{ name }}
     tcp-check       {{ tcp_check }}
                 {% endfor %}
             {% endif %}
+            {% if value.rate_limit_sessions is defined %}
+    rate-limit      sessions {{ value.rate_limit_sessions }}
+            {% endif %}
             {% if value.redirects is defined %}
                 {% for redirect in value.redirects %}
     redirect        {{ redirect }}

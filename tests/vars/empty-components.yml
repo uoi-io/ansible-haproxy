@@ -1,0 +1,7 @@
+---
+haproxy_frontend:
+  - test_frontend: {}
+
+haproxy_listen:
+  - test_listener:
+      servers: []
