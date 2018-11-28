@@ -1,0 +1,39 @@
+---
+- name: test empty component template expansion
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars_files:
+    - vars/empty-components.yml
+  vars:
+    frontend: "{{ lookup('template', '../templates/etc/haproxy/haproxy-frontend.cfg.j2') }}"
+    listener: "{{ lookup('template', '../templates/etc/haproxy/haproxy-listen.cfg.j2') }}"
+  tasks:
+    - name: verify no rate-limit in definition
+      assert:
+        that:
+          - item is not search('rate-limit +sessions')
+      with_items:
+        - frontend
+        - listener
+
+
+- name: test rate-limit sessions template expansion
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars_files:
+    - vars/rate-limited.yml
+  vars:
+    frontend: "{{ lookup('template', '../templates/etc/haproxy/haproxy-frontend.cfg.j2') }}"
+    listener: "{{ lookup('template', '../templates/etc/haproxy/haproxy-listen.cfg.j2') }}"
+  tasks:
+    - name: verify rate-limit in frontend definition
+      assert:
+        that:
+          - frontend is search('\n +rate-limit +sessions +1\n')
+
+    - name: verify rate-limit in listen definition
+      assert:
+        that:
+          - listener is search('\n +rate-limit +sessions +2\n')

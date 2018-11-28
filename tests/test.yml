@@ -1,4 +1,7 @@
 ---
+- import_playbook: test-templates.yml
+
+
 - hosts: localhost
   remote_user: root
   roles:
@@ -20,9 +23,10 @@
             - url_static path_end -i .jpg .gif .png .css .js
           bind_process:
             - 1
+          rate_limit_sessions: 10
           use_backends:
             - static if url_static
-    
+
     # Backend
     haproxy_backend:
       - dashboard_backend:
@@ -41,7 +45,7 @@
             - ctrl01 10.0.0.67:8080 check
             - ctrl02 10.0.0.68:8080 check
             - ctrl03 10.0.0.69:8080 check
-    
+
     # Listen
     haproxy_listen:
       - dashboard_cluster:
@@ -57,11 +61,12 @@
             - 1
           http_requests:
             - set-header X-Haproxy-Current-Date %T
+          rate_limit_sessions: 20
           servers:
             - ctrl01 10.0.0.67:80 check inter 2000 rise 2 fall 5
             - ctrl02 10.0.0.68:80 check inter 2000 rise 2 fall 5
             - ctrl03 10.0.0.69:80 check inter 2000 rise 2 fall 5
-    
+
       - neutron_api_cluster:
           binds_ssl:
             - 10.0.0.100:9696 {{ haproxy_ssl }}
@@ -72,7 +77,7 @@
             - ctrl01 10.0.0.62:9696 check inter 2000 rise 2 fall 5
             - ctrl02 10.0.0.63:9696 check inter 2000 rise 2 fall 5
             - ctrl03 10.0.0.64:9696 check inter 2000 rise 2 fall 5
-    
+
     # Peer
     haproxy_peer:
       - remote_peers:

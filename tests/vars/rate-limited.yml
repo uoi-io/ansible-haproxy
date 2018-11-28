@@ -1,0 +1,9 @@
+---
+haproxy_frontend:
+  - test_frontend: 
+      rate_limit_sessions: 1
+
+haproxy_listen:
+  - test_listener:
+      rate_limit_sessions: 2
+      servers: []

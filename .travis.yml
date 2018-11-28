@@ -25,5 +25,8 @@ script:
   # Basic role syntax check
   - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
 
+  # Test template expansion
+  - ansible-playbook tests/test-templates.yml -i tests/inventory
+
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

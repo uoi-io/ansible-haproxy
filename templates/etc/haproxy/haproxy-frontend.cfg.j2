@@ -64,6 +64,9 @@ frontend {{ name }}
     reqadd          {{ reqadd }}
                 {% endfor %}
             {% endif %}
+            {% if value.rate_limit_sessions is defined %}
+    rate-limit      sessions {{ value.rate_limit_sessions }}
+            {% endif %}
             {% if value.use_backends is defined %}
                 {% for use_backend in value.use_backends %}
     use_backend     {{ use_backend }}
