@@ -9,6 +9,12 @@ defaults
 {% endif %}
     maxconn    {{ haproxy_default_maxconn | default('4000') }}
     retries    {{ haproxy_default_retries |default('3') }}
+{% if haproxy_default_fullconn %}
+    fullconn {{ haproxy_default_fullconn }}
+{% endif %}
+{% if haproxy_default_balance %}
+    balance {{ haproxy_default_balance }}
+{% endif %}
 {% if haproxy_default_options %}
     {% for opt in haproxy_default_options %}
     option     {{ opt }}

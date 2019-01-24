@@ -53,6 +53,12 @@ listen {{ name }}
     acl             {{ acl }}
                 {% endfor %}
             {% endif %}
+            {% if value.monitor is defined %}
+    monitor         {{ value.monitor }}
+            {% endif %}
+            {% if value.monitor_uri is defined %}
+    monitor-uri     {{ value.monitor_uri }}
+            {% endif %}
             {% if value.http_requests is defined %}
                 {% for http_request in value.http_requests %}
     http-request    {{ http_request }}
@@ -85,6 +91,9 @@ listen {{ name }}
                 {% for redirect in value.redirects %}
     redirect        {{ redirect }}
                 {% endfor %}
+            {% endif %}
+            {% if value.reqrep is defined %}
+    reqrep          {{ value.reqrep }}
             {% endif %}
             {% if value.retries is defined %}
     retires         {{ value.retries }}
