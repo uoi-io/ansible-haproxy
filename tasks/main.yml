@@ -14,8 +14,7 @@
 
 - include: firewall.yml
   tags: [ haproxy, haproxy-firewall ]
-  when: haproxy_firewalld is defined and
-        haproxy_firewalld | bool
+  when: haproxy_firewalld | bool
 
 - include: selinux.yml
   tags: [ haproxy, haproxy-selinux ]
