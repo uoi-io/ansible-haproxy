@@ -8,6 +8,6 @@
   apt:
     name: haproxy
     state: present
-    update_cache: True
+    update_cache: true
     cache_valid_time: 3600
     default_release: "{{ haproxy_release | default(ansible_distribution_release) }}"

@@ -10,5 +10,5 @@
 - name: Enabling SELinux booleans for HAproxy
   seboolean:
     name: haproxy_connect_any
-    state: yes
-    persistent: yes
+    state: true
+    persistent: true

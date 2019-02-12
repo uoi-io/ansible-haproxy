@@ -9,4 +9,4 @@
   service:
     name: haproxy
     state: started
-    enabled: yes
+    enabled: true
