@@ -3,4 +3,3 @@
 - name: Installing HAproxy package
   package:
     name: haproxy
-    state: latest
