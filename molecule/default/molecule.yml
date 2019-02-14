@@ -1,0 +1,56 @@
+---
+dependency:
+  name: galaxy
+  enabled: false
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: debian9
+    image: debian:9
+    command: sleep infinity
+    groups: [ Debian ]
+    privileged: true
+  - name: el7
+    image: centos:7
+    command: /sbin/init
+    groups: [ RedHat ]
+    privileged: true
+  - name: f29
+    image: fedora:29
+    command: /sbin/init
+    groups: [ RedHat ]
+    privileged: true
+  - name: ubuntu18.04
+    image: ubuntu:18.04
+    command: sleep infinity
+    groups: [ Debian ]
+    privileged: true
+provisioner:
+  name: ansible
+  inventory:
+    group_vars:
+      Debian:
+        apache_pkg: apache2
+        apache_service: apache2
+        apache_ports: /etc/apache2/ports.conf
+        apache_conf_d: /etc/apache2/conf-enabled
+      RedHat:
+        apache_pkg: httpd
+        apache_service: httpd
+        apache_ports: /etc/httpd/conf/httpd.conf
+        apache_conf_d: /etc/httpd/conf.d
+    host_vars:
+      f29:
+        ansible_python_interpreter: python3
+  lint:
+    name: ansible-lint
+scenario:
+  name: default
+verifier:
+  name: testinfra
+  options:
+    v: true
+  lint:
+    name: flake8

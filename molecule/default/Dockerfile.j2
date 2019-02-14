@@ -1,0 +1,9 @@
+{% if item.registry is defined %}
+FROM {{ item.registry.url }}/{{ item.image }}
+{% else %}
+FROM {{ item.image }}
+{% endif %}
+
+RUN if [ $(command -v apt-get) ]; then apt-get update && apt-get install --no-install-recommends -y net-tools procps python && apt-get clean; \
+    elif [ $(command -v dnf) ]; then dnf install -y net-tools procps-ng && dnf clean all; \
+    elif [ $(command -v yum) ]; then yum install -y net-tools procps-ng && yum clean all; fi

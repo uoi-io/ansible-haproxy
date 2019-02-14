@@ -1,0 +1,36 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: Install apache package
+      package:
+        name: '{{ apache_pkg }}'
+
+    - name: Remove default listen 80
+      lineinfile:
+        dest: '{{ apache_ports }}'
+        regexp: '^Listen 80$'
+        state: absent
+
+    - name: Add custom listen ports
+      copy:
+        dest: '{{ apache_conf_d }}/backends.conf'
+        content: |
+          Listen 8080
+          Listen 8081
+          Listen 8082
+          Listen 19696
+          Listen 19697
+          Listen 19698
+
+    - name: Add default index.html
+      copy:
+        src: /usr/share/httpd/noindex/index.html
+        dest: /var/www/html/index.html
+        remote_src: true
+      when: ansible_os_family == 'RedHat'
+
+    - name: Start apache service
+      service:
+        name: '{{ apache_service }}'
+        state: started
