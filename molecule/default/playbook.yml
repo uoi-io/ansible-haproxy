@@ -1,0 +1,36 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - import_role:
+        name: ansible-haproxy
+      vars:
+        haproxy_firewalld: false
+        haproxy_selinux: false
+        haproxy_default_mode: http
+        haproxy_listen:
+          - dashboard_cluster:
+              mode: http
+              description: Horizon Dashboard
+              balance: roundrobin
+              binds:
+                - '*:80'
+              options: [ tcpka, httpchk, tcplog ]
+              http_requests:
+                - set-header X-Haproxy-Current-Date %T
+              rate_limit_sessions: 20
+              servers:
+                - ctrl01 127.0.0.1:8080 check inter 2000 rise 2 fall 5
+                - ctrl02 127.0.0.1:8081 check inter 2000 rise 2 fall 5
+                - ctrl03 127.0.0.1:8082 check inter 2000 rise 2 fall 5
+          - neutron_api_cluster:
+              mode: http
+              description: Neutron API
+              balance: source
+              binds:
+                - '*:9696'
+              options: [ tcpka, httpchk, tcplog ]
+              servers:
+                - ctrl01 127.0.0.1:19696 check inter 2000 rise 2 fall 5
+                - ctrl02 127.0.0.1:19697 check inter 2000 rise 2 fall 5
+                - ctrl03 127.0.0.1:19698 check inter 2000 rise 2 fall 5

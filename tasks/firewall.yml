@@ -2,8 +2,8 @@
 # file: roles/haproxy/tasks/firewall.yml
 - name: HAproxy firewalld rule
   firewalld:
-    port={{ item }}
-    permanent=true
-    state=enabled
-    immediate=true
+    port: '{{ item }}'
+    permanent: true
+    state: enabled
+    immediate: true
   with_items: "{{ haproxy_fw_ports }}"

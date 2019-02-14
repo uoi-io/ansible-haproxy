@@ -2,23 +2,21 @@
 # file: roles/haproxy/tasks/sysctl.yml
 - name: Enabling/Disabling net.ipv4.ip_nonlocal_bind option
   sysctl:
-    name=net.ipv4.ip_nonlocal_bind
-    value=1
-    sysctl_file=/etc/sysctl.d/10-ip_nonlocal_bind.conf
-    sysctl_set=yes
-    reload=yes
-    state=present
+    name: net.ipv4.ip_nonlocal_bind
+    value: 1
+    sysctl_file: /etc/sysctl.d/10-ip_nonlocal_bind.conf
+    sysctl_set: true
+    reload: true
+    state: present
   notify: restart haproxy
-  when: haproxy_bind_nonlocal_ip is defined and
-        haproxy_bind_nonlocal_ip | bool
+  when: haproxy_bind_nonlocal_ip | bool
 
 - name: Enabling/Disabling net.ipv4.ip_forward option
   sysctl:
-    name=net.ipv4.ip_forward
-    value=1
-    sysctl_file=/etc/sysctl.d/10-ip_forward.conf
-    sysctl_set=yes
-    reload=yes
-    state=present
-  when: haproxy_ip_forward is defined and
-        haproxy_ip_forward | bool
+    name: net.ipv4.ip_forward
+    value: 1
+    sysctl_file: /etc/sysctl.d/10-ip_forward.conf
+    sysctl_set: true
+    reload: true
+    state: present
+  when: haproxy_ip_forward | bool

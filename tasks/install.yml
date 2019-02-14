@@ -7,6 +7,6 @@
 
 - name: Enabling and starting HAproxy service
   service:
-    name=haproxy
-    state=started
-    enabled=yes
+    name: haproxy
+    state: started
+    enabled: true

@@ -1,14 +1,14 @@
 ---
 # file: roles/haproxy/tasks/install-Debian.yml
-- set_fact:
+- name: Set haproxy release
+  set_fact:
     haproxy_release: "{{ ansible_distribution_release }}-backports"
-  when: haproxy_apt_backports is defined and
-        haproxy_apt_backports
+  when: haproxy_apt_backports | bool
 
 - name: "Installing HAproxy from {{ haproxy_release | default(ansible_distribution_release) }}"
   apt:
     name: haproxy
     state: present
-    update_cache: True
+    update_cache: true
     cache_valid_time: 3600
     default_release: "{{ haproxy_release | default(ansible_distribution_release) }}"

@@ -8,7 +8,8 @@ This role provides support for the installation of HAproxy on current distributi
 
  - CentOS **7.x**
  - RedHat **7.x**
- - Ubuntu **14.xx** / **15.xx** / **16.xx**
+ - Fedora **29**
+ - Ubuntu **14.xx** / **15.xx** / **16.xx** / **18.04**
  - Debian **7.x** / **8.x** / **9.x**
 
 The role allows you to configure multiple sections of HAproxy:
@@ -221,6 +222,20 @@ haproxy_peer:
         - lb223 10.0.0.223:1024
         - lb224 10.0.0.224:1024
         - lb225 10.0.0.225:1024
+```
+
+Testing
+-------
+
+This role is using [ansible molecule](https://molecule.readthedocs.io/).
+You'll just need to install molecule via pip and run it.
+Currently the molecule configuration is based on the docker driver.
+
+```console
+$ apt/yum install docker
+$ systemctl start docker
+$ pip install docker molecule
+$ molecule test
 ```
 
 License
