@@ -39,6 +39,9 @@ frontend {{ name }}
     acl             {{ acl }}
                 {% endfor %}
             {% endif %}
+            {% if value.monitor_uri is defined %}
+    monitor-uri     {{ value.monitor_uri }}
+            {% endif %}
             {% if value.http_requests is defined %}
                 {% for http_request in value.http_requests %}
     http-request    {{ http_request }}

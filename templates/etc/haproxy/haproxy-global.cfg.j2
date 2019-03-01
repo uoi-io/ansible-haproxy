@@ -41,7 +41,7 @@ global
 {% endif %}
 {% if haproxy_global_stats is defined %}
     {% for stat in haproxy_global_stats %}
-    stats       {{ stat }}
+    stats      {{ stat }}
     {% endfor %}
 {% endif %}
 {% if haproxy_global_description %}

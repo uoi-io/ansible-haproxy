@@ -53,6 +53,9 @@ listen {{ name }}
     acl             {{ acl }}
                 {% endfor %}
             {% endif %}
+            {% if value.fullconn is defined %}
+    fullconn        {{ value.fullconn }}
+            {% endif %}
             {% if value.monitor is defined %}
     monitor         {{ value.monitor }}
             {% endif %}
@@ -83,6 +86,9 @@ listen {{ name }}
                 {% for tcp_check in value.tcp_checks %}
     tcp-check       {{ tcp_check }}
                 {% endfor %}
+            {% endif %}
+            {% if value.persist is defined %}
+    persist         {{ value.persist }}
             {% endif %}
             {% if value.rate_limit_sessions is defined %}
     rate-limit      sessions {{ value.rate_limit_sessions }}
