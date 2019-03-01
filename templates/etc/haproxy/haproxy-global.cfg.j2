@@ -28,7 +28,7 @@ global
     ca-base    {{ haproxy_global_ca_base }}
 {% endif %}
 {% if haproxy_global_crt_base %}
-    crt_base   {{ haproxy_global_crt_base }}
+    crt-base   {{ haproxy_global_crt_base }}
 {% endif %}
 {% if haproxy_global_ssl_options %}
     ssl-default-bind-options    {{ haproxy_global_ssl_options }}
