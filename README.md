@@ -104,6 +104,8 @@ haproxy_default_balance:
 haproxy_default_errorfiles:
   - 400 {{ haproxy_errors_directory }}/400.http
   - 403 {{ haproxy_errors_directory }}/403.http
+haproxy_default_http_check:
+haproxy_default_monitor_uri:
 
 # Stats
 haproxy_stats: true

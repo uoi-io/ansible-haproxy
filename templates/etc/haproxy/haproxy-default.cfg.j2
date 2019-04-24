@@ -7,29 +7,35 @@ defaults
     log        {{ log }}
     {% endfor %}
 {% endif %}
-    maxconn    {{ haproxy_default_maxconn | default('4000') }}
-    retries    {{ haproxy_default_retries |default('3') }}
+    maxconn     {{ haproxy_default_maxconn | default('4000') }}
+    retries     {{ haproxy_default_retries |default('3') }}
 {% if haproxy_default_fullconn %}
-    fullconn   {{ haproxy_default_fullconn }}
+    fullconn    {{ haproxy_default_fullconn }}
 {% endif %}
 {% if haproxy_default_balance %}
-    balance    {{ haproxy_default_balance }}
+    balance     {{ haproxy_default_balance }}
+{% endif %}
+{% if haproxy_default_http_check %}
+    http-check  {{ haproxy_default_http_check }}
+{% endif %}
+{% if haproxy_default_monitor_uri %}
+    monitor-uri {{ haproxy_default_monitor_uri }}
 {% endif %}
 {% if haproxy_default_options %}
     {% for opt in haproxy_default_options %}
-    option     {{ opt }}
+    option      {{ opt }}
     {% endfor %}
 {% endif %}
 {% if haproxy_default_timeouts %}
     {% for timeout in haproxy_default_timeouts %}
-    timeout    {{ timeout }}
+    timeout     {{ timeout }}
     {% endfor %}
 {% endif %}
 {% if haproxy_default_errorfiles is defined %}
     {% for errorfile in haproxy_default_errorfiles %}
-    errorfile  {{ errorfile }}
+    errorfile   {{ errorfile }}
     {% endfor %}
 {% endif %}
 {% if haproxy_default_mode is defined %}
-    mode       {{ haproxy_default_mode }}
+    mode        {{ haproxy_default_mode }}
 {% endif %}
