@@ -155,8 +155,9 @@ haproxy_frontend:
         - 1
       use_backends:
         - static if url_static
-      capture: request header Host len 64
-      capture: request header X-Forwarded-For len 64
+      capture:
+        - request header Host len 64
+        - request header X-Forwarded-For len 64
 ```
 ```
 # Backend
@@ -192,7 +193,8 @@ haproxy_listen:
       options: [ tcpka, httpchk, tcplog ]
       http-check: GET /auth/login
       cookie: SERVERID insert indirect nocache
-      capture: cookie SERVERID len 32
+      capture:
+        - cookie SERVERID len 32
       timeouts:
         - client 90m
         - server 90m
