@@ -115,6 +115,11 @@ listen {{ name }}
             {% for srv in value.servers %}
     server          {{ srv }}
             {% endfor %}
+            {% if value.use_backends is defined %}
+                {% for use_backend in value.use_backends %}
+    use_backend     {{ use_backend }}
+                {% endfor %}
+            {% endif %}
         {% endfor %}
 
     {% endfor %}
