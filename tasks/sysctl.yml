@@ -3,7 +3,7 @@
 - name: Enabling/Disabling net.ipv4.ip_nonlocal_bind option
   sysctl:
     name: net.ipv4.ip_nonlocal_bind
-    value: 1
+    value: '1'
     sysctl_file: /etc/sysctl.d/10-ip_nonlocal_bind.conf
     sysctl_set: true
     reload: true
@@ -14,7 +14,7 @@
 - name: Enabling/Disabling net.ipv4.ip_forward option
   sysctl:
     name: net.ipv4.ip_forward
-    value: 1
+    value: '1'
     sysctl_file: /etc/sysctl.d/10-ip_forward.conf
     sysctl_set: true
     reload: true
