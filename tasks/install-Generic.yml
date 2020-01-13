@@ -2,4 +2,4 @@
 # file: roles/haproxy/tasks/install-Generic.yml
 - name: Installing HAproxy package
   package:
-    name: haproxy
+    name: "{{ haproxy_package_name }}"
