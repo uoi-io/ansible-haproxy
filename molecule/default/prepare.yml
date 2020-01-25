@@ -4,7 +4,7 @@
   tasks:
     - name: Install apache package
       package:
-        name: '{{ apache_pkg }}'
+        name: '{{ apache_pkg }}'
 
     - name: Remove default listen 80
       lineinfile:
