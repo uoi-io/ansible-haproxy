@@ -3,6 +3,6 @@
 - name: Configuring HAproxy
   template:
     src: etc/haproxy/haproxy.cfg.j2
-    dest: /etc/haproxy/haproxy.cfg
-    validate: 'haproxy -f %s -c'
+    dest: "{{ haproxy_config }}"
+    validate: "{{ haproxy_bin }} -f %s -c"
   notify: reload haproxy
