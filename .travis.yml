@@ -6,7 +6,7 @@ sudo: required
 services:
   - docker
 install:
-  - pip install ansible==${ANSIBLE_VERSION}.* docker molecule
+  - pip install ansible==${ANSIBLE_VERSION}.* docker molecule ansible-lint yamllint flake8 testinfra
 script:
   - molecule test
 notifications:
