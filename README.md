@@ -54,6 +54,12 @@ haproxy_firewalld: true
 haproxy_selinux: true
 haproxy_apt_backports: false
 
+# Package customizations
+haproxy_package: haproxy
+haproxy_service: haproxy
+haproxy_bin: haproxy
+haproxy_config: /etc/haproxy/haproxy.cfg
+
 # Firewall
 haproxy_fw_ports:
   - "{{ haproxy_stats_port }}/tcp"
