@@ -36,6 +36,6 @@ defaults
     errorfile   {{ errorfile }}
     {% endfor %}
 {% endif %}
-{% if haproxy_default_mode is defined %}
+{% if haproxy_default_mode is defined and haproxy_default_mode | length > 0 %}
     mode        {{ haproxy_default_mode }}
 {% endif %}
