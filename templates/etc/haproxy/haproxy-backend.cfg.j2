@@ -48,6 +48,16 @@ backend {{ name }}
     http-response    {{ http_response }}
                 {% endfor %}
             {% endif %}
+            {% if value.reqrep is defined %}
+                {% for reqrep in value.reqrep %}
+    reqrep          {{ reqrep }}
+                {% endfor %}
+            {% endif %}
+            {% if value.reqirep is defined %}
+                {% for reqirep in value.reqirep %}
+    reqirep         {{ reqirep }}
+                {% endfor %}
+            {% endif %}
             {% if value.tcp_responses is defined %}
                 {% for tcp_response in value.tcp_responses %}
     tcp-response    {{ tcp_response }}
