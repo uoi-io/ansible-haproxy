@@ -1,0 +1,17 @@
+{% if haproxy_userlist %}
+##########################
+#       USERLIST         #
+##########################
+    {% for dict_item in haproxy_userlist %}
+        {% for name, value in dict_item.items() %}
+userlist {{ name }}
+            {% for group in value.groups %}
+    group       {{ group }}
+            {% endfor %}
+            {% for user in value.users %}
+    user        {{ user }}
+            {% endfor %} 
+        {% endfor %}
+
+    {% endfor %}
+{% endif %}
