@@ -1,40 +1,37 @@
-Ansible HAproxy (OpenStack ready)
-=========
-
+# Ansible HAproxy (OpenStack ready)
 
 [![Build Status](https://travis-ci.org/uoi-io/ansible-haproxy.svg?branch=master)](https://travis-ci.org/uoi-io/ansible-haproxy) [![Ansible Galaxy](https://img.shields.io/badge/galaxy-uoi.haproxy-green.svg?style=flat)](https://galaxy.ansible.com/uoi-io/haproxy/)
 
 This role provides support for the installation of HAproxy on current distributions:
 
- - CentOS **7.x**
- - RedHat **7.x**
- - Fedora **29**
- - Ubuntu **14.xx** / **15.xx** / **16.xx** / **18.04**
- - Debian **7.x** / **8.x** / **9.x**
+- CentOS **7.x**
+- RedHat **7.x**
+- Fedora **29**
+- Ubuntu **14.xx** / **15.xx** / **16.xx** / **18.04**
+- Debian **7.x** / **8.x** / **9.x**
 
 The role allows you to configure multiple sections of HAproxy:
- 
- - Global section
- - Default section
- - Listen section
- - Frontend section
- - Backend section
- - Peer section
- - Stats section
 
-Requirements
-------------
+- Global section
+- Default section
+- Listen section
+- Frontend section
+- Backend section
+- Peer section
+- Stats section
 
-This role requires at least HAproxy **1.5** *(SSL native support)* and Ansible **2.x**.
+## Requirements
 
-Role Variables
---------------
+This role requires at least HAproxy **1.5** _(SSL native support)_ and Ansible **2.x**.
 
-There are no variables in the ``vars`` directory, all variables can be override via the playbook.
+## Role Variables
 
-Empty variable like ``haproxy_global_uid`` wills appears in the ``/etc/haproxy/haproxy.cfg`` only if a value is define.
+There are no variables in the `vars` directory, all variables can be override via the playbook.
 
-Variable like ``haproxy_global_stats: []`` are arrays, in this example, the array is empty. This variable can be declare in two different ways:
+Empty variable like `haproxy_global_uid` wills appears in the `/etc/haproxy/haproxy.cfg` only if a value is define.
+
+Variable like `haproxy_global_stats: []` are arrays, in this example, the array is empty. This variable can be declare in two different ways:
+
 ```
 haproxy_global_stats: [ show-legends, show-node, refresh 20s]
 haproxy_global_stats:
@@ -113,6 +110,9 @@ haproxy_default_errorfiles:
 haproxy_default_http_check:
 haproxy_default_monitor_uri:
 
+# Userlist
+haproxy_userlist:
+
 # Stats
 haproxy_stats: true
 haproxy_stats_address: '*'
@@ -133,15 +133,13 @@ haproxy_ssl_ciphers: AES128+EECDH:AES128+EDH
 haproxy_ssl: 'ssl crt {{ haproxy_ssl_certificate }} ciphers {{ haproxy_ssl_ciphers }} {{ haproxy_ssl_options }}'
 ```
 
-Dependencies
-------------
+## Dependencies
 
 None
 
-Example Playbook
-----------------
+## Example Playbook
 
-The below examples show you how to define ``frontend``, ``backend``, ``listen``, ``peer``.
+The below examples show you how to define `frontend`, `backend`, `listen`, `peer`.
 
 ```
 # Frontend
@@ -165,6 +163,7 @@ haproxy_frontend:
         - request header Host len 64
         - request header X-Forwarded-For len 64
 ```
+
 ```
 # Backend
 haproxy_backend:
@@ -185,6 +184,7 @@ haproxy_backend:
         - cnd02 10.0.0.71:8080 check
         - cnd03 10.0.0.71:8080 check
 ```
+
 ```
 # Listen
 haproxy_listen:
@@ -224,6 +224,7 @@ haproxy_listen:
         - ctrl02 10.0.0.63:9696 check inter 2000 rise 2 fall 5
         - ctrl03 10.0.0.64:9696 check inter 2000 rise 2 fall 5
 ```
+
 ```
 # Peer
 haproxy_peer:
@@ -234,8 +235,7 @@ haproxy_peer:
         - lb225 10.0.0.225:1024
 ```
 
-Testing
--------
+## Testing
 
 This role is using [ansible molecule](https://molecule.readthedocs.io/).
 You'll just need to install molecule via pip and run it.
@@ -248,12 +248,10 @@ $ pip install docker molecule
 $ molecule test
 ```
 
-License
--------
+## License
 
 Apache
 
-Author Information
-------------------
+## Author Information
 
 This role was created in 2016 by Gaëtan Trellu (goldyfruit).
