@@ -5,7 +5,7 @@ global
     chroot     {{ haproxy_global_chroot | default('/var/lib/haproxy') }}
 {% if haproxy_global_daemon %}
     daemon
-    {% if haproxy_global_nbproc %}
+    {% if haproxy_global_nbproc is defined %}
     nbproc     {{ haproxy_global_nbproc }}
        {% if haproxy_global_cpu_maps %}
            {% for cpu_map in haproxy_global_cpu_maps %}

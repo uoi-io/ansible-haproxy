@@ -80,8 +80,9 @@ haproxy_global_ulimit_n:
 haproxy_global_logs:
   - 127.0.0.1    local0 debug
 haproxy_global_daemon: true
-haproxy_global_nbproc: 8
-haproxy_global_cpu_maps: [ 1 0, 2 1, 3 2, 4 3, 5 4, 6 5, 7 6, 8 7 ]
+# nbproc is deprecated. Will be removed in version 2.5
+# haproxy_global_nbproc: 8
+# haproxy_global_cpu_maps: [ 1 0, 2 1, 3 2, 4 3, 5 4, 6 5, 7 6, 8 7 ]
 haproxy_global_tunes:
   - tune.ssl.default-dh-param: 2048
 

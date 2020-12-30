@@ -38,10 +38,10 @@ haproxy_global_description:
 haproxy_global_ulimit_n:
 haproxy_global_logs:
   - 127.0.0.1    local0 debug
-haproxy_global_nbproc: 2
-haproxy_global_cpu_maps:
-  - 1 0
-  - 2 1
+# haproxy_global_nbproc: 2
+# haproxy_global_cpu_maps:
+#   - 1 0
+#   - 2 1
 haproxy_global_tunes:
   - tune.ssl.default-dh-param: 2048
 
