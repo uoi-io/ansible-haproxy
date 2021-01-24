@@ -9,9 +9,11 @@
     - haproxy-selinux
     - haproxy-config
     - haproxy-sysctl
+  when: haproxy_mode == "system"
 
 - include: install.yml
   tags: [ haproxy, haproxy-install ]
+  when: haproxy_mode == "system"
 
 - include: firewall.yml
   tags: [ haproxy, haproxy-firewall ]
@@ -26,3 +28,8 @@
 
 - include: sysctl.yml
   tags: [ haproxy, haproxy-sysctl ]
+  when: haproxy_mode == "system"
+
+- include: docker.yml
+  tags: [ haproxy, haproxy-docker ]
+  when: haproxy_mode == "docker"

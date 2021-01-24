@@ -4,5 +4,6 @@
   template:
     src: etc/haproxy/haproxy.cfg.j2
     dest: "{{ haproxy_config }}"
-    validate: "{{ haproxy_bin }} -f %s -c"
+    # FIXME: find a way to validate in Docker mode
+    # validate: "{{ haproxy_bin }} -f %s -c"
   notify: reload haproxy
