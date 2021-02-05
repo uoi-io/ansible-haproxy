@@ -98,6 +98,16 @@ frontend {{ name }}
             {% if value.stick_table is defined %}
     stick-table     {{ value.stick_table }}
             {% endif %}
+            {% if value.stats is defined %}
+                {% for stat in value.stats %}
+    stats           {{ stat }}
+                {% endfor %}
+            {% endif %}
+            {% if value.timeouts is defined %}
+                {% for timeout in value.timeouts %}
+    timeout           {{ timeout }}
+                {% endfor %}
+            {% endif %}
             {% if value.default_backend is defined %}
     default_backend {{ value.default_backend }}
             {% endif %}

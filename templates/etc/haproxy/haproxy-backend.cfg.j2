@@ -14,11 +14,17 @@ backend {{ name }}
             {% if value.balance is defined %}
     balance         {{ value.balance }}
             {% endif %}
+            {% if value.hash_type is defined %}
+    hash-type     {{ value.hash_type }}
+            {% endif %}
             {% if value.http_check is defined %}
     http-check      {{ value.http_check }}
             {% endif %}
             {% if value.cookie is defined %}
     cookie          {{ value.cookie }}
+            {% endif %}
+            {% if value.fullconn is defined %}
+    fullconn          {{ value.fullconn }}
             {% endif %}
             {% if value.bind_process is defined %}
     bind-process    {{ value.bind_process | join(' ') }}
@@ -26,6 +32,11 @@ backend {{ name }}
             {% if value.options is defined %}
                 {% for opt in value.options %}
     option          {{ opt }}
+                {% endfor %}
+            {% endif %}
+            {% if value.time_outs is defined %}
+                {% for timeout in value.time_outs %}
+    timeout          {{ timeout }}
                 {% endfor %}
             {% endif %}
             {% if value.acls is defined %}
@@ -56,6 +67,11 @@ backend {{ name }}
             {% if value.reqirep is defined %}
                 {% for reqirep in value.reqirep %}
     reqirep         {{ reqirep }}
+                {% endfor %}
+            {% endif %}
+            {% if value.timeouts is defined %}
+                {% for timeout in value.timeouts %}
+    timeout           {{ timeout }}
                 {% endfor %}
             {% endif %}
             {% if value.tcp_responses is defined %}
