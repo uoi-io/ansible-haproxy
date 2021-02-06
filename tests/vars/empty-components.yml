@@ -1,5 +1,6 @@
 ---
 haproxy_frontend:
+  # yamllint disable-line rule:braces
   - test_frontend: {}
 
 haproxy_listen:

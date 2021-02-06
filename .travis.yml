@@ -2,11 +2,14 @@
 language: python
 python:
   - "3.6"
+  - "3.7"
+  - "3.8"
+  - "3.9"
 sudo: required
 services:
   - docker
 install:
-  - pip install ansible==${ANSIBLE_VERSION}.* docker molecule ansible-lint yamllint flake8 testinfra
+  - pip3 install ansible==${ANSIBLE_VERSION}.* docker molecule molecule-docker ansible-lint yamllint flake8 testinfra
 script:
   - molecule test
 notifications:
@@ -14,3 +17,4 @@ notifications:
 env:
   - ANSIBLE_VERSION=2.8
   - ANSIBLE_VERSION=2.9
+  - ANSIBLE_VERSION=2.10

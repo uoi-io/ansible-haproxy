@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+set -x
+
+# Pre-commit hooks to copy steps from default CI/CD pipeline. See `bitbucket-pipelines.yml` for details.
+find . -path ./tmp -prune -false -o -name "*.sh" -print -exec shellcheck -x {} \;
+ansible-lint --nocolor -p --parseable-severity
+yamllint -s  .
+flake8
