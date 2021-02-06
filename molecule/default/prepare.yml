@@ -27,7 +27,7 @@
     - name: Add default index.html
       copy:
         src: /usr/share/httpd/noindex/index.html
-        dest: /var/www/html/index.html
+        dest: "/var/www/html/index.html{{ '' if ansible_lsb.major_release == 7 else '.en-US' }}"
         mode: "0640"
         remote_src: true
       when: ansible_os_family == 'RedHat'
