@@ -4,8 +4,10 @@
   service:
     name: "{{ haproxy_service }}"
     state: restarted
+  when: haproxy_mode == "system"
 
 - name: reload haproxy
   service:
     name: "{{ haproxy_service }}"
     state: reloaded
+  when: haproxy_mode == "system"

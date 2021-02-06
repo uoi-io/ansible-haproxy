@@ -1,0 +1,76 @@
+---
+
+- name: HAProxy - run a Docker container
+  community.general.docker_container:
+    # common settings
+    name: "{{ haproxy_docker_name }}"
+    hostname: "{{ inventory_hostname }}"
+    image: "{{ haproxy_docker_image }}"
+    container_default_behavior: compatibility
+    keep_volumes: false
+    privileged: false
+    pull: "{{ haproxy_docker_pull }}"
+    recreate: "{{ haproxy_docker_recreate }}"
+    restart_policy: unless-stopped
+    state: started
+    tls: true
+    tty: false
+    sysctls: "{{ haproxy_docker_sysctls }}"
+    ulimits: "{{ haproxy_docker_ulimits }}"
+    # network settings
+    network_mode: "{{ haproxy_docker_network_mode | default('default') }}"
+    networks:
+      - name: "{{ haproxy_docker_network_name }}"
+        aliases:
+          - "{{ inventory_hostname }}"
+    networks_cli_compatible: true
+    ports: "{{ haproxy_docker_ports }}"
+    purge_networks: true
+    # persistent volumes
+    volumes: "{{ haproxy_docker_volumes | default([haproxy_config+':/usr/local/etc/haproxy/haproxy.cfg:ro']) }}"
+    # runtime settings
+    etc_hosts: >
+      {
+        "{{ inventory_hostname }}": "127.0.0.1"
+      }
+    # if variable also present in env, then the env value will override
+    # env_file: "{{ docker_persistent_path }}/ig/docker_ig.env"
+  when: ansible_version.full >= "2.10.0"
+
+# TODO: keep docker_container module support for Ansible < 2.10
+- name: HAProxy - run a Docker container (old style)
+  docker_container:
+    # common settings
+    name: "{{ haproxy_docker_name }}"
+    hostname: "{{ inventory_hostname }}"
+    image: "{{ haproxy_docker_image }}"
+    container_default_behavior: compatibility
+    keep_volumes: false
+    privileged: false
+    pull: "{{ haproxy_docker_pull }}"
+    recreate: "{{ haproxy_docker_recreate }}"
+    restart_policy: unless-stopped
+    state: started
+    tls: true
+    tty: false
+    sysctls: "{{ haproxy_docker_sysctls }}"
+    ulimits: "{{ haproxy_docker_ulimits }}"
+    # network settings
+    network_mode: "{{ haproxy_docker_network_mode | default('default') }}"
+    networks:
+      - name: "{{ haproxy_docker_network_name }}"
+        aliases:
+          - "{{ inventory_hostname }}"
+    networks_cli_compatible: true
+    ports: "{{ haproxy_docker_ports }}"
+    purge_networks: true
+    # persistent volumes
+    volumes: "{{ haproxy_docker_volumes | default([haproxy_config+':/usr/local/etc/haproxy/haproxy.cfg:ro']) }}"
+    # runtime settings
+    etc_hosts: >
+      {
+        "{{ inventory_hostname }}": "127.0.0.1"
+      }
+    # if variable also present in env, then the env value will override
+    # env_file: "{{ docker_persistent_path }}/ig/docker_ig.env"
+  when: ansible_version.full < "2.10.0"
