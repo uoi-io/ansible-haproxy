@@ -22,7 +22,7 @@ The role allows you to configure multiple sections of HAproxy:
 
 ## Requirements
 
-This role requires at least HAproxy **1.5** _(SSL native support)_ and Ansible **2.x**.
+This role requires at least HAproxy **1.5** _(SSL native support)_ and Ansible **2.8**.
 
 ## Role Variables
 
