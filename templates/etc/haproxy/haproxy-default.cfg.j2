@@ -2,36 +2,36 @@
 #        DEFAULT         #
 ##########################
 defaults
-{% if haproxy_default_logs is defined %}
+{% if haproxy_default_logs is defined and haproxy_default_logs|length %}
     {% for log in haproxy_default_logs %}
     log        {{ log }}
     {% endfor %}
 {% endif %}
     maxconn     {{ haproxy_default_maxconn | default('4000') }}
     retries     {{ haproxy_default_retries |default('3') }}
-{% if haproxy_default_fullconn %}
+{% if haproxy_default_fullconn is defined and haproxy_default_fullconn|length %}
     fullconn    {{ haproxy_default_fullconn }}
 {% endif %}
-{% if haproxy_default_balance %}
+{% if haproxy_default_balance is defined and  haproxy_default_balance|length %}
     balance     {{ haproxy_default_balance }}
 {% endif %}
-{% if haproxy_default_http_check %}
+{% if haproxy_default_http_check is defined and haproxy_default_http_check|length %}
     http-check  {{ haproxy_default_http_check }}
 {% endif %}
-{% if haproxy_default_monitor_uri %}
+{% if haproxy_default_monitor_uri is defined and haproxy_default_monitor_uri|length %}
     monitor-uri {{ haproxy_default_monitor_uri }}
 {% endif %}
-{% if haproxy_default_options %}
+{% if haproxy_default_options is defined and haproxy_default_options|length %}
     {% for opt in haproxy_default_options %}
     option      {{ opt }}
     {% endfor %}
 {% endif %}
-{% if haproxy_default_timeouts %}
+{% if haproxy_default_timeouts is defined and haproxy_default_timeouts|length %}
     {% for timeout in haproxy_default_timeouts %}
     timeout     {{ timeout }}
     {% endfor %}
 {% endif %}
-{% if haproxy_default_errorfiles is defined %}
+{% if haproxy_default_errorfiles is defined and haproxy_default_errorfiles|length %}
     {% for errorfile in haproxy_default_errorfiles %}
     errorfile   {{ errorfile }}
     {% endfor %}

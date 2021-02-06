@@ -2,7 +2,9 @@
 #         GLOBAL         #
 ##########################
 global
+{% if haproxy_global_chroot is defined and haproxy_global_chroot|length %}
     chroot     {{ haproxy_global_chroot | default('/var/lib/haproxy') }}
+{% endif %}
 {% if haproxy_global_daemon %}
     daemon
     {% if haproxy_global_nbproc is defined %}
@@ -15,47 +17,47 @@ global
     {% endif %}
 {% endif %}
     user       {{ haproxy_global_user | default('haproxy') }}
-{% if haproxy_global_uid %}
+{% if haproxy_global_uid is defined and haproxy_global_uid > 0 %}
     uid        {{ haproxy_global_uid }}
 {% endif %}
     group      {{ haproxy_global_group | default('haproxy') }}
-{% if haproxy_global_gid %}
+{% if haproxy_global_gid is defined and haproxy_global_gid > 0 %}
     gid        {{ haproxy_global_gid }}
 {% endif %}
     maxconn    {{ haproxy_global_maxconn | default('4000') }}
     pidfile    {{ haproxy_global_pidfile | default('/var/run/haproxy.pid') }}
-{% if haproxy_global_ca_base %}
+{% if haproxy_global_ca_base is defined and haproxy_global_ca_base|length %}
     ca-base    {{ haproxy_global_ca_base }}
 {% endif %}
-{% if haproxy_global_crt_base %}
+{% if haproxy_global_crt_base is defined and haproxy_global_crt_base|length %}
     crt-base   {{ haproxy_global_crt_base }}
 {% endif %}
-{% if haproxy_global_ssl_options %}
+{% if haproxy_global_ssl_options is defined and haproxy_global_ssl_options|length %}
     ssl-default-bind-options    {{ haproxy_global_ssl_options }}
 {% endif %}
-{% if haproxy_global_ssl_ciphers %}
+{% if haproxy_global_ssl_ciphers is defined and haproxy_global_ssl_ciphers|length %}
     ssl-default-bind-ciphers    {{ haproxy_global_ssl_ciphers }}
 {% endif %}
-{% if haproxy_global_ssl_server_verify %}
+{% if haproxy_global_ssl_server_verify is defined and haproxy_global_ssl_server_verify|length %}
     ssl-server-verify           {{ haproxy_global_ssl_server_verify }}
 {% endif %}
-{% if haproxy_global_stats is defined %}
+{% if haproxy_global_stats is defined and haproxy_global_stats|length %}
     {% for stat in haproxy_global_stats %}
     stats      {{ stat }}
     {% endfor %}
 {% endif %}
-{% if haproxy_global_description %}
+{% if haproxy_global_description is defined and haproxy_global_description|length %}
     description    {{ haproxy_global_description }}
 {% endif %}
-{% if haproxy_global_ulimit_n %}
+{% if haproxy_global_ulimit_n is defined and haproxy_global_ulimit_n > 0 %}
     ulimit-n   {{ haproxy_global_ulimit_n }}
 {% endif %}
-{% if haproxy_global_logs is defined %}
+{% if haproxy_global_logs is defined and haproxy_global_logs|length %}
     {% for log in haproxy_global_logs %}
     log        {{ log }}
     {% endfor %}
 {% endif %}
-{% if haproxy_global_tunes is defined %}
+{% if haproxy_global_tunes is defined and haproxy_global_tunes|length %}
     {% for tune in haproxy_global_tunes %}
         {% for key, value in tune.items() %}
     {{ key }}    {{ value }}
