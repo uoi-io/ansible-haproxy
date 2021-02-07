@@ -8,30 +8,26 @@ galaxy_info:
   min_ansible_version: 2.0
   github_branch: master
   platforms:
+    - name: CentOS
+      versions:
+        - 7
+        - 8
     - name: EL
       versions:
         - 7
     - name: Fedora
       versions:
-        - 22
-        - 23
-        - 24
-        - 25
-        - 29
+        - 32
+        - 33
     - name: Ubuntu
       versions:
-        - trusty
-        - utopic
-        - vivid
-        - wily
         - xenial
-        - yakkety
         - bionic
+        - focal
     - name: Debian
       versions:
-        - jessie
-        - wheezy
         - stretch
+        - buster
   galaxy_tags:
     - cloud
     - system

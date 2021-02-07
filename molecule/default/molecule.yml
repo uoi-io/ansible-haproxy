@@ -22,11 +22,11 @@ platforms:
     groups: [ Debian ]
     privileged: true
   # https://www.centos.org/centos-linux/
-  # - name: centos8
-  #   image: centos:8
-  #   command: /sbin/init
-  #   groups: [ RedHat ]
-  #   privileged: true
+  - name: centos8
+    image: centos:8
+    command: /sbin/init
+    groups: [ RedHat ]
+    privileged: true
   - name: centos7
     image: centos:7
     command: /sbin/init
@@ -75,6 +75,20 @@ provisioner:
         ansible_python_interpreter: python3
 scenario:
   name: default
+  test_sequence:
+    - dependency
+    - lint
+    - cleanup
+    - destroy
+    - syntax
+    - create
+    - prepare
+    - converge
+    # - idempotence
+    - side_effect
+    - verify
+    - cleanup
+    - destroy
 verifier:
   name: testinfra
   options:
