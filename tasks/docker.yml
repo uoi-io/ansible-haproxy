@@ -35,7 +35,7 @@
       }
     # if variable also present in env, then the env value will override
     # env_file: "{{ docker_persistent_path }}/ig/docker_ig.env"
-  when: ansible_version.full >= "2.10.0"
+  when: ansible_version.full is version('2.10.0', '>=')
 
 # TODO: keep docker_container module support for Ansible < 2.10
 - name: HAProxy - run a Docker container (old style)
@@ -73,4 +73,4 @@
       }
     # if variable also present in env, then the env value will override
     # env_file: "{{ docker_persistent_path }}/ig/docker_ig.env"
-  when: ansible_version.full < "2.10.0"
+  when: ansible_version.full is version('2.10.0', '<')

@@ -3,9 +3,14 @@ extends: default
 
 rules:
   braces:
+    min-spaces-inside: 1
     max-spaces-inside: 1
     level: error
   brackets:
     max-spaces-inside: 1
     level: error
-  line-length: disable
+  comments:
+    min-spaces-from-content: 1
+  empty-values: enable
+  line-length:
+    max: 160

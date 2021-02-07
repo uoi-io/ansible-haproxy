@@ -22,11 +22,14 @@
           Listen 19696
           Listen 19697
           Listen 19698
+        mode: "0640"
 
     - name: Add default index.html
       copy:
-        src: /usr/share/httpd/noindex/index.html
-        dest: /var/www/html/index.html
+        src: "/usr/share/httpd/noindex/index.html\
+          {{ '.en-US' if (ansible_facts['distribution'] == 'CentOS' and ansible_facts['distribution_major_version'] == '8') else '' }}"
+        dest: "/var/www/html/index.html"
+        mode: "0644"
         remote_src: true
       when: ansible_os_family == 'RedHat'
 
