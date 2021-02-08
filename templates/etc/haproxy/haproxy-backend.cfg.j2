@@ -1,4 +1,4 @@
-{% if haproxy_backend %}
+{% if haproxy_backend is defined and haproxy_frontend|length %}
 ##########################
 #        BACKENDS        #
 ##########################

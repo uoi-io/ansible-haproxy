@@ -334,6 +334,7 @@ haproxy_repo_yum:
     gpgkey: https://download.copr.fedorainfracloud.org/results/pzinchuk/haproxy/pubkey.gpg
     enabled: true
     state: present
+```
 
 ## Testing
 

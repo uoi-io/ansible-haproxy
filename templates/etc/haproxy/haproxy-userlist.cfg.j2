@@ -1,4 +1,4 @@
-{% if haproxy_userlist is defined %}
+{% if haproxy_userlist is defined and haproxy_userlist|length %}
 ##########################
 #       USERLIST         #
 ##########################
@@ -10,7 +10,7 @@ userlist {{ name }}
             {% endfor %}
             {% for user in value.users %}
     user        {{ user }}
-            {% endfor %} 
+            {% endfor %}
         {% endfor %}
 
     {% endfor %}

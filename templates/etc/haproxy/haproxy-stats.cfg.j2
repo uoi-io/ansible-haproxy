@@ -1,4 +1,4 @@
-{% if haproxy_stats %}
+{% if haproxy_stats is defined and haproxy_stats|bool %}
 ##########################
 #         STATS          #
 ##########################
@@ -11,7 +11,7 @@ listen stats
     stats      {{ opt }}
 {% endfor %}
     stats      uri {{ haproxy_stats_uri }}
-    {% if haproxy_stats_auth %}
+    {% if haproxy_stats_auth is defined and haproxy_stats_auth|bool %}
     stats      realm Haproxy\ Statistics
     stats      auth {{ haproxy_stats_user }}:{{ haproxy_stats_password }}
     {% endif %}

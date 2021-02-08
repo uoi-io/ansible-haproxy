@@ -24,7 +24,7 @@ def test_main_config(host):
     assert f.is_file
     assert f.user == 'root'
     assert f.group == 'root'
-    assert f.mode == 0o644
+    assert f.mode == 0o640
     assert f.contains('mode       http')
     assert f.contains('stats      enable')
     assert f.contains('listen dashboard_cluster')

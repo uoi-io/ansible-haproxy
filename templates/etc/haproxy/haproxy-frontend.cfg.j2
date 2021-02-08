@@ -1,4 +1,4 @@
-{% if haproxy_frontend %}
+{% if haproxy_frontend is defined and haproxy_frontend|length %}
 ##########################
 #       FRONTENDS        #
 ##########################
@@ -64,7 +64,7 @@ frontend {{ name }}
             {% endif %}
             {% if value.reqadds is defined %}
                 {% for reqadd in value.reqadds %}
-    reqadd          {{ reqadd }}
+    http-request add-header {{ reqadd }}
                 {% endfor %}
             {% endif %}
             {% if value.reqrep is defined %}

@@ -1,4 +1,4 @@
-{% if haproxy_peer %}
+{% if haproxy_peer is defined and haproxy_peer|length %}
 ##########################
 #          PEERS         #
 ##########################

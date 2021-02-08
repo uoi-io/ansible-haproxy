@@ -5,9 +5,12 @@ haproxy_bind_nonlocal_ip: true
 haproxy_ip_forward: true
 
 # Common
+haproxy_mode: system  # or docker
 haproxy_firewalld: true
 haproxy_selinux: true
 haproxy_apt_backports: false
+# default value for macOS & Docker; overridden in `vars/{{ ansible_os_family }}.yml`
+haproxy_errors_directory: /usr/local/etc/haproxy/errors
 
 # Package customizations
 haproxy_package: haproxy
@@ -25,17 +28,18 @@ haproxy_global_chroot: /var/lib/haproxy
 haproxy_global_daemon: true
 haproxy_global_group: haproxy
 haproxy_global_user: haproxy
-haproxy_global_uid:
-haproxy_global_gid:
+# FIXME: empty default values are breaking with "object of type 'NoneType' has no len()" in Ansible 2.10.4
+# haproxy_global_uid:
+# haproxy_global_gid:
 haproxy_global_pidfile: /var/run/haproxy.pid
-haproxy_global_ca_base:
-haproxy_global_crt_base:
-haproxy_global_ssl_options:
-haproxy_global_ssl_ciphers:
-haproxy_global_ssl_server_verify:
+# haproxy_global_ca_base:
+# haproxy_global_crt_base:
+# haproxy_global_ssl_options:
+# haproxy_global_ssl_ciphers:
+# haproxy_global_ssl_server_verify:
 haproxy_global_stats: []
-haproxy_global_description:
-haproxy_global_ulimit_n:
+# haproxy_global_description:
+# haproxy_global_ulimit_n:
 haproxy_global_logs:
   - 127.0.0.1    local0 debug
 # haproxy_global_nbproc: 2
@@ -48,9 +52,9 @@ haproxy_global_tunes:
 # Default
 haproxy_default_logs:
   - global
-haproxy_default_mode:
+# haproxy_default_mode:
 haproxy_default_maxconn: 4000
-haproxy_default_fullconn:
+# haproxy_default_fullconn:
 haproxy_default_options:
   - dontlognull
   - forwardfor
@@ -64,12 +68,12 @@ haproxy_default_timeouts:
   - server 1m
   - http-keep-alive 10s
   - check 10s
-haproxy_default_balance:
+# haproxy_default_balance:
 haproxy_default_errorfiles:
   - 400 {{ haproxy_errors_directory }}/400.http
   - 403 {{ haproxy_errors_directory }}/403.http
-haproxy_default_http_check:
-haproxy_default_monitor_uri:
+# haproxy_default_http_check:
+# haproxy_default_monitor_uri:
 
 # Stats
 haproxy_stats: true
@@ -102,3 +106,23 @@ haproxy_listen: []
 
 # Peer
 haproxy_peer: []
+
+# Docker
+# see more details in `tasks/docker.yml` and https://docs.ansible.com/ansible/latest/collections/community/general/docker_container_module.html
+haproxy_docker_name: "haproxy"
+haproxy_docker_image: "haproxy:alpine"
+# haproxy_docker_network_mode: default
+haproxy_docker_network_name: "haproxy"
+haproxy_docker_pull: true
+haproxy_docker_recreate: false
+haproxy_docker_ports:
+  - "8443:8443"
+  - "{{ haproxy_stats_port }}:{{ haproxy_stats_port }}"
+haproxy_docker_sysctls:
+  net.ipv4.ip_nonlocal_bind: "{{ 1 if haproxy_bind_nonlocal_ip|bool else 0 }}"
+  net.ipv4.ip_forward: "{{ 1 if haproxy_ip_forward|bool else 0 }}"
+  net.core.somaxconn: 4096
+  net.ipv4.tcp_syncookies: 1
+haproxy_docker_ulimits:
+  - "nofile:262144:262144"
+# haproxy_docker_volumes: []
