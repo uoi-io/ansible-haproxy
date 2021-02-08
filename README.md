@@ -314,6 +314,27 @@ haproxy_docker_volumes:
   - "{{ docker_persistent_path }}/haproxy/haproxy.crt:/usr/local/etc/haproxy/ssl/haproxy.crt:ro"
 ```
 
+## RedHat based repository
+
+If you have own repository with HAProxy, you can install repo file.
+Next example will add repository with HAProxy 2 for CentOS 8
+
+```
+# Repository
+haproxy_repo_yum:
+  - name: haproxy
+    description: HAProxy 2 repository - $basearch
+    baseurl: https://download.copr.fedorainfracloud.org/results/pzinchuk/haproxy/epel-8-$basearch/
+    priority: 1
+    gpgcheck: true
+    file: haproxy
+    repo_gpgcheck: false
+    skip_if_unavailable: true
+    gpgkey: https://download.copr.fedorainfracloud.org/results/pzinchuk/haproxy/pubkey.gpg
+    enabled: true
+    state: present
+```
+
 ## Testing
 
 This role is using [ansible molecule](https://molecule.readthedocs.io/).
