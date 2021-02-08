@@ -1,6 +1,6 @@
 # Ansible HAproxy (OpenStack ready)
 
-[![Build Status](https://travis-ci.org/uoi-io/ansible-haproxy.svg?branch=master)](https://travis-ci.org/uoi-io/ansible-haproxy) [![Ansible Galaxy](https://img.shields.io/badge/galaxy-uoi.haproxy-green.svg?style=flat)](https://galaxy.ansible.com/uoi-io/haproxy/)
+[![Build Status](https://travis-ci.com/uoi-io/ansible-haproxy.svg?branch=master)](https://travis-ci.com/uoi-io/ansible-haproxy) [![Ansible Galaxy](https://img.shields.io/badge/galaxy-uoi.haproxy-green.svg?style=flat)](https://galaxy.ansible.com/uoi-io/haproxy/)
 
 This role provides support for the installation of HAproxy on current distributions:
 
@@ -33,7 +33,6 @@ Empty variable like `haproxy_global_uid` wills appears in the `/etc/haproxy/hapr
 Variable like `haproxy_global_stats: []` are arrays, in this example, the array is empty. This variable can be declare in two different ways:
 
 ```yaml
-haproxy_global_stats: [ show-legends, show-node, refresh 20s]
 haproxy_global_stats:
   - show-legends
   - show-node
@@ -318,8 +317,8 @@ haproxy_docker_volumes:
 ## Testing
 
 This role is using [ansible molecule](https://molecule.readthedocs.io/).
-You'll just need to install molecule via pip and run it.
-Currently the molecule configuration is based on the docker driver.
+You'll just need to install molecule via `pip` and run it.
+Currently the molecule configuration is based on the `docker` driver.
 
 ```console
 apt/yum install docker
