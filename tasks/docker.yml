@@ -1,7 +1,7 @@
 ---
 
 - name: HAProxy - run a Docker container
-  community.general.docker_container:
+  docker_container:
     # common settings
     name: "{{ haproxy_docker_name }}"
     hostname: "{{ inventory_hostname }}"
