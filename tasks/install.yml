@@ -7,6 +7,6 @@
 
 - name: Enabling and starting HAproxy service
   service:
-    name: haproxy
+    name: "{{ haproxy_service }}"
     state: started
     enabled: true
