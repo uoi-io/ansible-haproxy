@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  author: Gaëtan Trellu - goldyfruit
+  author: uoi-io
   description: Install and configure HAproxy
   company: InCloudUs
   issue_tracker_url: https://github.com/uoi-io/ansible-haproxy/issues
