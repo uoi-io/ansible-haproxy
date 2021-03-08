@@ -1,6 +1,7 @@
 ---
 galaxy_info:
-  author: uoi-io.haproxy
+  author: Gaëtan Trellu (goldyfruit)
+  role_name: haproxy
   description: Install and configure HAproxy
   company: InCloudUs
   issue_tracker_url: https://github.com/uoi-io/ansible-haproxy/issues
