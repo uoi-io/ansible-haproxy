@@ -1,5 +1,4 @@
 ---
-
 - name: HAProxy - run a Docker container
   docker_container:
     # common settings

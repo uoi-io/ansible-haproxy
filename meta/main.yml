@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Gaëtan Trellu (goldyfruit)
+  namespace: uoi
   role_name: haproxy
   description: Install and configure HAproxy
   company: InCloudUs

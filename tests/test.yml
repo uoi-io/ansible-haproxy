@@ -1,7 +1,6 @@
 ---
 - import_playbook: test-templates.yml
 
-
 - hosts: localhost
   remote_user: root
   roles:
