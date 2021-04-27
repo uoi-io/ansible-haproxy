@@ -37,3 +37,39 @@
       assert:
         that:
           - listener is search('\n +rate-limit +sessions +2\n')
+
+
+- name: test stats connection clear text by default
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars_files:
+    - ../defaults/main.yml
+  vars:
+    stats: "{{ lookup('template', '../templates/etc/haproxy/haproxy-stats.cfg.j2') }}"
+    statsBinds: "{{ stats | regex_findall('\n +bind [^\n]*') }}"
+  tasks:
+    - name: verify default stats bind statement
+      assert:
+        that:
+          - statsBinds | length == 1
+          - statsBinds[0] is not search('ssl crt')
+
+
+- name: test stats connection is encrypted when requested
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars_files:
+    - ../defaults/main.yml
+    - vars/stats-ssl.yml
+  vars:
+    stats: "{{ lookup('template', '../templates/etc/haproxy/haproxy-stats.cfg.j2') }}"
+    statsBinds: "{{ stats | regex_findall('\n +bind [^\n]*')}}"
+    expectedBind: "{{ haproxy_stats_address }}:{{ haproxy_stats_port }} {{ haproxy_ssl }}"
+  tasks:
+    - name: verify encrypted stats bind statement
+      assert:
+        that:
+          - statsBinds | length == 1
+          - statsBinds[0] is search('bind +' + (expectedBind | regex_escape))
