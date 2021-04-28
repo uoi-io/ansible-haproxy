@@ -120,6 +120,7 @@ haproxy_userlist:
 haproxy_stats: true
 haproxy_stats_address: '*'
 haproxy_stats_port: 9001
+haproxy_stats_ssl: false
 haproxy_stats_user: haproxy-stats
 haproxy_stats_password: B1Gp4sSw0rD!!
 haproxy_stats_uri: /

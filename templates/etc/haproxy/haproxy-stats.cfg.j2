@@ -3,7 +3,11 @@
 #         STATS          #
 ##########################
 listen stats
+{% if haproxy_stats_ssl is defined and haproxy_stats_ssl|bool %}
+    bind       {{ haproxy_stats_address }}:{{ haproxy_stats_port }} {{ haproxy_ssl }}
+{% else %}
     bind       {{ haproxy_stats_address }}:{{ haproxy_stats_port }}
+{% endif %}
     mode       http
     maxconn    10
     stats      enable
