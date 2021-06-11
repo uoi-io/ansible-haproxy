@@ -20,3 +20,9 @@
 - name: Installing HAproxy package
   package:
     name: "{{ haproxy_package }}"
+
+- name: "Installing selinux python bindings"
+  package:
+    name: "{{ haproxy_selinux_packages }}"
+    state: present
+  when: haproxy_selinux | bool
