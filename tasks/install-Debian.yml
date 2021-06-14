@@ -12,3 +12,9 @@
     update_cache: true
     cache_valid_time: 3600
     default_release: "{{ haproxy_release | default(ansible_distribution_release) }}"
+
+- name: "Installing selinux python bindings"
+  apt:
+    name: "{{ haproxy_selinux_packages }}"
+    state: present
+  when: haproxy_selinux | bool
