@@ -19,6 +19,9 @@ listen stats
     stats      realm Haproxy\ Statistics
     stats      auth {{ haproxy_stats_user }}:{{ haproxy_stats_password }}
     {% endif %}
+{% for listener_opt in haproxy_stats_listener_options %}
+    option     {{ listener_opt }}
+{% endfor %}
     timeout    client 100s
     timeout    server 100s
     timeout    connect 100s

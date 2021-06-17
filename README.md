@@ -132,6 +132,8 @@ haproxy_stats_options:
   - show-legends
   - show-node
   - hide-version
+haproxy_stats_listener_options:
+  - dontlog-normal
 
 # SSL
 haproxy_ssl_certificate: /etc/ssl/uoi.io/uoi.io.pem
