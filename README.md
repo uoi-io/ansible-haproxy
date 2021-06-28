@@ -94,6 +94,7 @@ haproxy_global_tunes:
 # Default
 haproxy_default_logs:
   - global
+haproxy_default_log_format:
 haproxy_default_mode:
 haproxy_default_maxconn: 4000
 haproxy_default_options:
