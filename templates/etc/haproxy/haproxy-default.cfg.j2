@@ -7,6 +7,9 @@ defaults
     log        {{ log }}
     {% endfor %}
 {% endif %}
+{% if haproxy_default_log_format is defined and haproxy_default_log_format|length %}
+    log-format  {{ haproxy_default_log_format }}
+{% endif %}
     maxconn     {{ haproxy_default_maxconn | default('4000') }}
     retries     {{ haproxy_default_retries |default('3') }}
 {% if haproxy_default_fullconn is defined and haproxy_default_fullconn|length %}
