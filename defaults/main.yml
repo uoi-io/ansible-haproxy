@@ -93,7 +93,7 @@ haproxy_stats_options:
   - show-legends
   - show-node
   - hide-version
-# haproxy_stats_listener_options:
+haproxy_stats_listener_options: []
 
 # SSL
 haproxy_ssl_certificate: /etc/ssl/uoi.io/uoi.io.pem
