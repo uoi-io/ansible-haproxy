@@ -266,6 +266,25 @@ haproxy_peer:
         - lb225 10.0.0.225:1024
 ```
 
+```yaml
+# Resolvers
+haproxy_resolvers:
+  - mydns:
+      nameservers:
+        - 'dns1 10.0.0.1:53'
+        - 'dns3 tcp@10.0.0.3:53'
+      parse_resolv_conf: true
+      resolve_retries: 5
+      timeouts:
+        - 'resolve 1s'
+        - 'retry 1s'
+      holds:
+        - 'other 30s'
+        - 'refused 30s'
+        - 'nx 30s'
+        - 'valid 30s'
+```
+
 ### Docker usage example
 
 Here is a short example how to use the role in another playbook and run HAProxy in Docker.
