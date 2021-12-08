@@ -1,0 +1,32 @@
+{% if haproxy_resolvers is defined and haproxy_resolvers|length %}
+##########################
+#        RESOLVERS        #
+##########################
+    {% for dict_item in haproxy_resolvers %}
+        {% for name, value in dict_item.items() %}
+
+resolvers {{ name }}
+            {% if value.nameservers is defined %}
+                {% for ns in value.nameservers %}
+    nameserver      {{ ns }}
+                {% endfor %}
+            {% endif %}
+            {% if value.parse_resolv_conf is sameas true %}
+    parse-resolv-conf
+            {% endif %}
+            {% if value.resolve_retries is defined %}
+    resolve_retries {{ value.resolve_retries }}
+            {% endif %}
+            {% if value.timeouts is defined %}
+                {% for timeout in value.timeouts %}
+    timeout         {{ timeout }}
+                {% endfor %}
+            {% endif %}
+            {% if value.holds is defined %}
+                {% for hold in value.holds %}
+    hold            {{ hold }}
+                {% endfor %}
+            {% endif %}     
+         {% endfor %}
+    {% endfor %}
+{% endif %}

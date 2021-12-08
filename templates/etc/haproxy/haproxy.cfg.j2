@@ -16,6 +16,10 @@
 
 {# PEER CONFIGURATION #}
 {% include 'haproxy-peer.cfg.j2' %}
+
+{# RESOLVERS CONFIGURATION #}
+{% include 'haproxy-resolvers.cfg.j2' %}
+
 {# LISTEN CONFIGURATION #}
 {% include 'haproxy-listen.cfg.j2' %}
 {# FRONTEND CONFIGURATION #}
