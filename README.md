@@ -208,6 +208,9 @@ haproxy_backend:
         - ctrl03 10.0.0.69:80 check inter 2000 rise 2 fall 5
   - static:
       balance: roundrobin
+      compression:
+        - algo gzip deflate
+        - type text/css text/html application/javascript
       bind_process:
         - 1
       servers:
