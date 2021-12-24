@@ -100,6 +100,11 @@ backend {{ name }}
     stick           {{ stick }}
                 {% endfor %}
             {% endif %}
+            {% if value.compression is defined %}
+                {% for compression in value.compression %}
+    compression     {{ compression }}
+                {% endfor %}
+            {% endif %}
             {% for srv in value.servers %}
     server          {{ srv }}
             {% endfor %}
