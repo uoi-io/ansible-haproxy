@@ -105,6 +105,11 @@ backend {{ name }}
     compression     {{ compression }}
                 {% endfor %}
             {% endif %}
+            {% if value.server_templates is defined %}
+                {% for srv_tmpl in value.server_templates %}
+    server-template {{ srv_tmpl }}
+                {% endfor %}
+            {% endif %}
             {% for srv in value.servers %}
     server          {{ srv }}
             {% endfor %}

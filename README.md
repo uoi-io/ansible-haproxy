@@ -202,6 +202,8 @@ haproxy_backend:
       balance: source
       bind_process:
         - 1
+      server_templates:
+        - srv 3 service.local:80 check resolvers mydns init-addr none
       servers:
         - ctrl01 10.0.0.67:80 check inter 2000 rise 2 fall 5
         - ctrl02 10.0.0.68:80 check inter 2000 rise 2 fall 5
