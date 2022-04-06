@@ -1,13 +1,13 @@
 ---
 # file: roles/haproxy/handlers/main.yml
 - name: restart haproxy
-  service:
+  ansible.builtin.service:
     name: "{{ haproxy_service }}"
     state: restarted
   when: haproxy_mode == "system"
 
 - name: reload haproxy
-  service:
+  ansible.builtin.service:
     name: "{{ haproxy_service }}"
     state: reloaded
   when: haproxy_mode == "system"

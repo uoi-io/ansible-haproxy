@@ -1,7 +1,7 @@
 ---
 # file: roles/haproxy/tasks/main.yml
 - name: Include OS variables
-  include_vars: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
   tags:
     - haproxy
     - haproxy-install

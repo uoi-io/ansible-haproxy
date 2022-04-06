@@ -1,7 +1,7 @@
 ---
 # file: roles/haproxy/tasks/install-Generic.yml
 - name: "RedHat | Install basic repo file"
-  yum_repository:
+  ansible.builtin.yum_repository:
     name: "{{ item.name }}"
     description: "{{ item.description  | default(omit) }}"
     baseurl: "{{ item.baseurl }}"
@@ -18,11 +18,11 @@
   when: haproxy_repo_yum is defined
 
 - name: Installing HAproxy package
-  package:
+  ansible.builtin.package:
     name: "{{ haproxy_package }}"
 
 - name: "Installing selinux python bindings"
-  package:
+  ansible.builtin.package:
     name: "{{ haproxy_selinux_packages }}"
     state: present
   when: haproxy_selinux | bool
