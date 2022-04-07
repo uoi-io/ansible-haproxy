@@ -1,12 +1,12 @@
 ---
 # file: roles/haproxy/tasks/install-Debian.yml
 - name: Set haproxy release
-  set_fact:
+  ansible.builtin.set_fact:
     haproxy_release: "{{ ansible_distribution_release }}-backports"
   when: haproxy_apt_backports | bool
 
 - name: "Installing HAproxy from {{ haproxy_release | default(ansible_distribution_release) }}"
-  apt:
+  ansible.builtin.apt:
     name: "{{ haproxy_package }}"
     state: present
     update_cache: true
@@ -14,7 +14,7 @@
     default_release: "{{ haproxy_release | default(ansible_distribution_release) }}"
 
 - name: "Installing selinux python bindings"
-  apt:
+  ansible.builtin.apt:
     name: "{{ haproxy_selinux_packages }}"
     state: present
   when: haproxy_selinux | bool

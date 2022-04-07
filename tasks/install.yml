@@ -6,7 +6,7 @@
   when: ansible_os_family != 'Debian'
 
 - name: Enabling and starting HAproxy service
-  service:
+  ansible.builtin.service:
     name: "{{ haproxy_service }}"
     state: started
     enabled: true

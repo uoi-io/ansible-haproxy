@@ -7,7 +7,7 @@ driver:
 lint: |
   set -ex
   yamllint -s .
-  ansible-lint --nocolor -p --parseable-severity --exclude=molecule/ --exclude=tests/
+  ansible-lint --nocolor -p --exclude=molecule/ --exclude=tests/
   flake8
 platforms:
   # https://wiki.debian.org/DebianReleases
@@ -26,12 +26,18 @@ platforms:
     command: sleep infinity
     groups: [Debian]
     privileged: true
-  # https://www.centos.org/centos-linux/
-  - name: centos8
-    image: centos:8
+  # https://rockylinux.org/
+  - name: rockylinux8
+    image: rockylinux:8
     command: /sbin/init
     groups: [RedHat]
     privileged: true
+  # https://www.centos.org/centos-linux/
+  # - name: centos8
+  #   image: centos:8
+  #   command: /sbin/init
+  #   groups: [ RedHat ]
+  #   privileged: true
   - name: centos7
     image: centos:7
     command: /sbin/init

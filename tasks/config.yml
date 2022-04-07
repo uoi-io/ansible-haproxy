@@ -1,7 +1,7 @@
 ---
 # file: roles/haproxy/tasks/config.yml
 - name: Configuring HAproxy
-  template:
+  ansible.builtin.template:
     src: etc/haproxy/haproxy.cfg.j2
     dest: "{{ haproxy_config }}"
     mode: "0640"
