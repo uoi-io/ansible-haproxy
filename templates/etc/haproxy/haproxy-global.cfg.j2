@@ -32,11 +32,23 @@ global
 {% if haproxy_global_crt_base is defined and haproxy_global_crt_base|length %}
     crt-base   {{ haproxy_global_crt_base }}
 {% endif %}
-{% if haproxy_global_ssl_options is defined and haproxy_global_ssl_options|length %}
-    ssl-default-bind-options    {{ haproxy_global_ssl_options }}
+{% if haproxy_global_ssl_bind_options is defined and haproxy_global_ssl_bind_options|length %}
+    ssl-default-bind-options    {{ haproxy_global_ssl_bind_options }}
 {% endif %}
-{% if haproxy_global_ssl_ciphers is defined and haproxy_global_ssl_ciphers|length %}
-    ssl-default-bind-ciphers    {{ haproxy_global_ssl_ciphers }}
+{% if haproxy_global_ssl_bind_ciphers is defined and haproxy_global_ssl_bind_ciphers|length %}
+    ssl-default-bind-ciphers    {{ haproxy_global_ssl_bind_ciphers }}
+{% endif %}
+{% if haproxy_global_ssl_bind_ciphersuites is defined and haproxy_global_ssl_bind_ciphersuites|length %}
+    ssl-default-bind-ciphersuites    {{ haproxy_global_ssl_bind_ciphersuites }}
+{% endif %}
+{% if haproxy_global_ssl_server_options is defined and haproxy_global_ssl_server_options|length %}
+    ssl-default-server-options    {{ haproxy_global_ssl_server_options }}
+{% endif %}
+{% if haproxy_global_ssl_server_ciphers is defined and haproxy_global_ssl_server_ciphers|length %}
+    ssl-default-server-ciphers    {{ haproxy_global_ssl_server_ciphers }}
+{% endif %}
+{% if haproxy_global_ssl_server_ciphersuites is defined and haproxy_global_ssl_server_ciphersuites|length %}
+    ssl-default-server-ciphersuites    {{ haproxy_global_ssl_server_ciphersuites }}
 {% endif %}
 {% if haproxy_global_ssl_server_verify is defined and haproxy_global_ssl_server_verify|length %}
     ssl-server-verify           {{ haproxy_global_ssl_server_verify }}
