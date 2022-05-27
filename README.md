@@ -76,8 +76,12 @@ haproxy_global_gid:
 haproxy_global_pidfile: /var/run/haproxy.pid
 haproxy_global_ca_base:
 haproxy_global_crt_base:
-haproxy_global_ssl_options:
-haproxy_global_ssl_ciphers:
+haproxy_global_ssl_bind_options:
+haproxy_global_ssl_bind_ciphers:
+haproxy_global_ssl_bind_ciphersuites:
+haproxy_global_ssl_server_options:
+haproxy_global_ssl_server_ciphers:
+haproxy_global_ssl_server_ciphersuites:
 haproxy_global_ssl_server_verify:
 haproxy_global_stats: []
 haproxy_global_description:
