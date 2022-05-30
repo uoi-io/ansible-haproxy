@@ -98,6 +98,11 @@ haproxy_stats_options:
   - show-node
   - hide-version
 haproxy_stats_listener_options: []
+haproxy_stats_timeouts:
+  - client 100s
+  - server 100s
+  - connect 100s
+  - queue 100s
 
 # SSL
 haproxy_ssl_certificate: /etc/ssl/uoi.io/uoi.io.pem
