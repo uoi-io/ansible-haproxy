@@ -22,8 +22,9 @@ listen stats
 {% for listener_opt in haproxy_stats_listener_options %}
     option     {{ listener_opt }}
 {% endfor %}
-    timeout    client 100s
-    timeout    server 100s
-    timeout    connect 100s
-    timeout    queue 100s
+{% if haproxy_stats_timeouts is defined and haproxy_stats_timeouts|length %}
+    {% for timeout in haproxy_stats_timeouts %}
+    timeout     {{ timeout }}
+    {% endfor %}
+{% endif %}
 {% endif %}
