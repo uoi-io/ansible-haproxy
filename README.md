@@ -209,6 +209,10 @@ haproxy_frontend:
 haproxy_backend:
   - dashboard_backend:
       balance: source
+      default_server: "inter 2s downinter 5s rise 3 fall 2 slowstart 30s maxconn 30 maxqueue 64 weight 100"
+      http_checks:
+        - 'send meth GET uri /check-haproxy.php hdr Host haproxy.check-vhost.de'
+        - 'expect string "All services running fine"'
       bind_process:
         - 1
       server_templates:
