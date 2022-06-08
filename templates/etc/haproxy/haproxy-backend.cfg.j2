@@ -20,9 +20,10 @@ backend {{ name }}
             {% if value.hash_type is defined %}
     hash-type     {{ value.hash_type }}
             {% endif %}
-            {% if value.http_check is defined %}
-    http-check      {{ value.http_check }}
-            {% endif %}
+            {% if value.http_checks is defined %}
+                {% for http_check in value.http_checks %}
+    http-check      {{ http_check }}
+                {% endfor %}
             {% if value.cookie is defined %}
     cookie          {{ value.cookie }}
             {% endif %}
