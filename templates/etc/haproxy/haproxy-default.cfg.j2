@@ -4,7 +4,7 @@
 defaults
 {% if haproxy_default_logs is defined and haproxy_default_logs|length %}
     {% for log in haproxy_default_logs %}
-    log        {{ log }}
+    log         {{ log }}
     {% endfor %}
 {% endif %}
 {% if haproxy_default_log_format is defined and haproxy_default_log_format|length %}

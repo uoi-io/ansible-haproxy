@@ -24,7 +24,7 @@ listen stats
 {% endfor %}
 {% if haproxy_stats_timeouts is defined and haproxy_stats_timeouts|length %}
     {% for timeout in haproxy_stats_timeouts %}
-    timeout     {{ timeout }}
+    timeout    {{ timeout }}
     {% endfor %}
 {% endif %}
 {% endif %}
