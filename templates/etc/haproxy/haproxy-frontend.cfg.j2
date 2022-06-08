@@ -44,7 +44,7 @@ frontend {{ name }}
             {% endif %}
             {% if value.http_requests is defined %}
                 {% for http_request in value.http_requests %}
-    http-request    {{ http_request }}
+    http-request       {{ http_request }}
                 {% endfor %}
             {% endif %}
             {% if value.tcp_requests is defined %}
