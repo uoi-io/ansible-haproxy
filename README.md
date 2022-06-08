@@ -209,6 +209,9 @@ haproxy_frontend:
 haproxy_backend:
   - dashboard_backend:
       balance: source
+      http_checks:
+        - 'send meth GET uri /check-haproxy.php hdr Host haproxy.check-vhost.de'
+        - 'expect string "All services running fine"'
       bind_process:
         - 1
       server_templates:
