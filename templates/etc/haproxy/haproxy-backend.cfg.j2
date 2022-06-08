@@ -24,6 +24,7 @@ backend {{ name }}
                 {% for http_check in value.http_checks %}
     http-check      {{ http_check }}
                 {% endfor %}
+            {% endif %}
             {% if value.cookie is defined %}
     cookie          {{ value.cookie }}
             {% endif %}
