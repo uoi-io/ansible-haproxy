@@ -123,8 +123,15 @@ haproxy_default_monitor_uri:
 
 # Userlist
 haproxy_userlist:
+  - stats-auth:
+      groups:
+        - "admin users admin"
+        - "readonly users user"
+      users:
+        - "admin insecure-password opqrstuvw"
+        - "user insecure-password abcdefghi"
 
-# Stats
+# Stats with HTTP Basic Auth and a single user
 haproxy_stats: true
 haproxy_stats_address: '*'
 haproxy_stats_port: 9001
@@ -144,6 +151,23 @@ haproxy_stats_timeouts:
   - server 100s
   - connect 100s
   - queue 100s
+
+# Stats with HTTP Basic Auth using an userlist
+haproxy_stats: true
+haproxy_stats_address: "::"
+haproxy_stats_port: 8081
+haproxy_stats_ssl: false
+haproxy_stats_uri: /stats
+haproxy_stats_auth:
+haproxy_stats_acls:
+  - "AUTH http_auth(stats-auth)"
+  - "AUTH_ADMIN http_auth_group(stats-auth) admin"
+haproxy_stats_options:
+  - refresh 5s
+  - show-legends
+  - show-node
+  - http-request auth unless AUTH
+  - admin if AUTH_ADMIN
 
 # SSL
 haproxy_ssl_certificate: /etc/ssl/uoi.io/uoi.io.pem

@@ -10,6 +10,11 @@ listen stats
 {% endif %}
     mode       http
     maxconn    10
+{% if haproxy_stats_acls is defined and haproxy_stats_acls|length %}
+    {% for acl in haproxy_stats_acls %}
+    acl        {{ acl }}
+    {% endfor %}
+{% endif %}
     stats      enable
 {% for opt in haproxy_stats_options %}
     stats      {{ opt }}
