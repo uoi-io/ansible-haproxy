@@ -8,6 +8,9 @@ listen {{ name }}
             {% if value.mode is defined %}
     mode            {{ value.mode }}
             {% endif %}
+            {% if value.default_server is defined %}
+    default-server  {{ value.default_server }}
+            {% endif %}
             {% if value.description is defined %}
     description     {{ value.description }}
             {% endif %}
