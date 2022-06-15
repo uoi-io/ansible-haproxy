@@ -265,6 +265,7 @@ haproxy_listen:
       mode: http
       description: Horizon Dashboard
       balance: roundrobin
+      default_server: "inter 2s downinter 5s rise 3 fall 2 slowstart 30s maxconn 30 maxqueue 64 weight 100"
       binds:
         - 10.0.0.100:80
       binds_ssl:
