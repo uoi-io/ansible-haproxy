@@ -80,11 +80,6 @@ frontend {{ name }}
             {% if value.rate_limit_sessions is defined %}
     rate-limit      sessions {{ value.rate_limit_sessions }}
             {% endif %}
-            {% if value.use_backends is defined %}
-                {% for use_backend in value.use_backends %}
-    use_backend     {{ use_backend }}
-                {% endfor %}
-            {% endif %}
             {% if value.redirects is defined %}
                 {% for redirect in value.redirects %}
     redirect        {{ redirect }}
@@ -106,6 +101,11 @@ frontend {{ name }}
             {% if value.timeouts is defined %}
                 {% for timeout in value.timeouts %}
     timeout           {{ timeout }}
+                {% endfor %}
+            {% endif %}
+            {% if value.use_backends is defined %}
+                {% for use_backend in value.use_backends %}
+    use_backend     {{ use_backend }}
                 {% endfor %}
             {% endif %}
             {% if value.default_backend is defined %}
