@@ -27,6 +27,9 @@ listen stats
 {% for listener_opt in haproxy_stats_listener_options %}
     option     {{ listener_opt }}
 {% endfor %}
+{% for http_request in haproxy_stats_http_requests %}
+    http-request     {{ http_request }}
+{% endfor %}
 {% if haproxy_stats_timeouts is defined and haproxy_stats_timeouts|length %}
     {% for timeout in haproxy_stats_timeouts %}
     timeout    {{ timeout }}
