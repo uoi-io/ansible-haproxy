@@ -144,6 +144,8 @@ haproxy_stats_options:
   - show-legends
   - show-node
   - hide-version
+haproxy_stats_http_requests:
+  - use-service prometheus-exporter if { path /metrics }
 haproxy_stats_listener_options:
   - dontlog-normal
 haproxy_stats_timeouts:

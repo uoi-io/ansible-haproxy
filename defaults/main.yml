@@ -99,6 +99,7 @@ haproxy_stats_options:
   - show-node
   - hide-version
 haproxy_stats_listener_options: []
+haproxy_stats_http_requests: []
 haproxy_stats_timeouts:
   - client 100s
   - server 100s
