@@ -115,9 +115,11 @@ backend {{ name }}
     server-template {{ srv_tmpl }}
                 {% endfor %}
             {% endif %}
-            {% for srv in value.servers %}
+            {% if value.servers is defined %}
+                {% for srv in value.servers %}
     server          {{ srv }}
-            {% endfor %}
+                {% endfor %}
+            {% endif %}
         {% endfor %}
 
     {% endfor %}
