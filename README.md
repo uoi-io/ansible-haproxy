@@ -223,6 +223,8 @@ haproxy_frontend:
         - url_static path_end -i .jpg .gif .png .css .js
       bind_process:
         - 1
+      log_formats:
+        - "%ci:%cp [%tr] %ft %b/%s %TR/%Tw/%Tc/%Tr/%Ta %ST %B %CC %CS %tsc %ac/%fc/%bc/%sc/%rc %sq/%bq %hr %hs %{+Q}r"
       use_backends:
         - static if url_static
       capture:
