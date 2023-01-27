@@ -85,6 +85,11 @@ frontend {{ name }}
     redirect        {{ redirect }}
                 {% endfor %}
             {% endif %}
+            {% if value.log_formats is defined %}
+                {% for log_format in value.log_formats %}
+    log_format             {{ log_format }}
+                {% endfor %}
+            {% endif %}
             {% if value.logs is defined %}
                 {% for log in value.logs %}
     log             {{ log }}
