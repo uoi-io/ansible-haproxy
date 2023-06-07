@@ -1,8 +1,8 @@
 ---
-- include: install-Debian.yml
+- include_tasks: install-Debian.yml
   when: ansible_os_family == 'Debian'
 
-- include: install-Generic.yml
+- include_tasks: install-Generic.yml
   when: ansible_os_family != 'Debian'
 
 - name: Enabling and starting HAproxy service

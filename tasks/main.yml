@@ -11,25 +11,25 @@
     - haproxy-sysctl
   when: haproxy_mode == "system"
 
-- include: install.yml
-  tags: [ haproxy, haproxy-install ]
+- include_tasks: install.yml
+  tags: [haproxy, haproxy-install]
   when: haproxy_mode == "system"
 
-- include: firewall.yml
-  tags: [ haproxy, haproxy-firewall ]
+- include_tasks: firewall.yml
+  tags: [haproxy, haproxy-firewall]
   when: haproxy_firewalld | bool
 
-- include: selinux.yml
-  tags: [ haproxy, haproxy-selinux ]
+- include_tasks: selinux.yml
+  tags: [haproxy, haproxy-selinux]
   when: haproxy_selinux | bool
 
-- include: config.yml
-  tags: [ haproxy, haproxy-config ]
+- include_tasks: config.yml
+  tags: [haproxy, haproxy-config]
 
-- include: sysctl.yml
-  tags: [ haproxy, haproxy-sysctl ]
+- include_tasks: sysctl.yml
+  tags: [haproxy, haproxy-sysctl]
   when: haproxy_mode == "system"
 
-- include: docker.yml
-  tags: [ haproxy, haproxy-docker ]
+- include_tasks: docker.yml
+  tags: [haproxy, haproxy-docker]
   when: haproxy_mode == "docker"
