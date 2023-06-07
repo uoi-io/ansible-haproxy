@@ -4,8 +4,8 @@ name: CI
 on: push
 
 jobs:
-  lint:
-    name: Lint
+  yamllint:
+    name: yamllint
     runs-on: ubuntu-latest
     steps:
       - name: Check out the codebase.
@@ -19,12 +19,32 @@ jobs:
       - name: Install test dependencies.
         run: pip3 install yamllint
 
-      - name: Lint code.
+      - name: Run yamllint
         run: |
-          yamllint .
+          yamllint -s .
+
+  ansible-lint:
+    name: ansible-lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+
+      - name: Install test dependencies.
+        run: pip3 install ansible-lint
+
+      - name: Run ansible-lint
+        run: |
+          ansible-lint
 
   molecule:
-    name: Molecule
+    name: molecule
     runs-on: ubuntu-latest
     strategy:
       matrix:
