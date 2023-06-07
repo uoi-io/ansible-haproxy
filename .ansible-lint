@@ -1,4 +1,8 @@
 ---
 # This makes the linter display but not fail for rules/tags listed below
 warn_list:
-  - '106' # Role name {} does not match ``^[a-z][a-z0-9_]+$`` pattern
+  - "106" # Role name {} does not match ``^[a-z][a-z0-9_]+$`` pattern
+
+exclude_paths:
+  - tests
+  - molecule
