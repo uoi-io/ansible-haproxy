@@ -1,20 +1,40 @@
-name: Molecule
+---
+name: CI
 
 on:
-  push:
+  pull_request:
     branches:
       - master
-  pull_request:
+  push:
     branches:
       - master
 
 jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+
+      - name: Install test dependencies.
+        run: pip3 install yamllint
+
+      - name: Lint code.
+        run: |
+          yamllint .
+
   molecule:
+    name: Molecule
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
       matrix:
-        platform:
+        distro:
           - debian11
           - debian10
           - debian9
@@ -24,16 +44,22 @@ jobs:
           - f32
           - ubuntu20.04
           - ubuntu18.04
+
     steps:
-      - name: Checkout
+      - name: Check out the codebase.
         uses: actions/checkout@v2
+
+      - name: Set up Python 3.
+        uses: actions/setup-python@v2
         with:
-          path: "${{ github.repository }}"
-      - name: Molecule
-        uses: gofrolist/molecule-action@v2
-        with:
-          molecule_options: --debug --base-config molecule/_shared/base.yml
-          molecule_command: test
-          molecule_args: --platform-name ${{ matrix.platform }}
+          python-version: "3.x"
+
+      - name: Install test dependencies.
+        run: pip3 install ansible molecule molecule-plugins[docker] docker
+
+      - name: Run Molecule tests.
+        run: molecule test -p ${MOLECULE_DISTRO}
         env:
+          PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
+          MOLECULE_DISTRO: ${{ matrix.distro }}
