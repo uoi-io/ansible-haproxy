@@ -417,7 +417,7 @@ Currently the molecule configuration is based on the `docker` driver.
 ```console
 apt/yum install docker
 systemctl start docker
-pip install docker molecule
+pip install docker molecule molecule-plugins pytest-testinfra
 molecule test
 ```
 
