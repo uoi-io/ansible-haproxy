@@ -50,6 +50,11 @@ platforms:
     groups: [RedHat]
     privileged: true
   # https://wiki.ubuntu.com/Releases
+  - name: ubuntu22.04
+    image: ubuntu:22.04
+    command: sleep infinity
+    groups: [Debian]
+    privileged: true
   - name: ubuntu20.04
     image: ubuntu:20.04
     command: sleep infinity
@@ -90,7 +95,7 @@ scenario:
     - create
     - prepare
     - converge
-    # - idempotence
+    - idempotence
     - side_effect
     - verify
     - cleanup

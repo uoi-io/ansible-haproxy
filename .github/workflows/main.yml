@@ -36,6 +36,7 @@ jobs:
           - centos7
           - f33
           - f32
+          - ubuntu22.04
           - ubuntu20.04
           - ubuntu18.04
 
