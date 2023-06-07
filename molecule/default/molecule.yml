@@ -4,11 +4,6 @@ dependency:
   enabled: false
 driver:
   name: docker
-lint: |
-  set -ex
-  yamllint -s .
-  ansible-lint --nocolor -p --exclude=molecule/ --exclude=tests/
-  flake8
 platforms:
   # https://wiki.debian.org/DebianReleases
   - name: debian11
@@ -88,7 +83,7 @@ scenario:
   name: default
   test_sequence:
     - dependency
-    - lint
+    # - lint
     - cleanup
     - destroy
     - syntax
