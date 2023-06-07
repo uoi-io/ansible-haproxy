@@ -51,9 +51,7 @@ jobs:
         distro:
           - debian11
           - debian10
-          - debian9
           - rockylinux8
-          - centos7
           - f33
           - f32
           - ubuntu22.04
