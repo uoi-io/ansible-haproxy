@@ -1,6 +1,6 @@
 ---
 - name: HAProxy - run a Docker container
-  docker_container:
+  community.docker.docker_container:
     # common settings
     name: "{{ haproxy_docker_name }}"
     hostname: "{{ inventory_hostname }}"
@@ -26,7 +26,7 @@
     ports: "{{ haproxy_docker_ports }}"
     purge_networks: true
     # persistent volumes
-    volumes: "{{ haproxy_docker_volumes | default([haproxy_config+':/usr/local/etc/haproxy/haproxy.cfg:ro']) }}"
+    volumes: "{{ haproxy_docker_volumes | default([haproxy_config + ':/usr/local/etc/haproxy/haproxy.cfg:ro']) }}"
     # runtime settings
     etc_hosts: >
       {
@@ -38,7 +38,7 @@
 
 # TODO: keep docker_container module support for Ansible < 2.10
 - name: HAProxy - run a Docker container (old style)
-  docker_container:
+  community.docker.docker_container:
     # common settings
     name: "{{ haproxy_docker_name }}"
     hostname: "{{ inventory_hostname }}"
@@ -64,7 +64,7 @@
     ports: "{{ haproxy_docker_ports }}"
     purge_networks: true
     # persistent volumes
-    volumes: "{{ haproxy_docker_volumes | default([haproxy_config+':/usr/local/etc/haproxy/haproxy.cfg:ro']) }}"
+    volumes: "{{ haproxy_docker_volumes | default([haproxy_config + ':/usr/local/etc/haproxy/haproxy.cfg:ro']) }}"
     # runtime settings
     etc_hosts: >
       {

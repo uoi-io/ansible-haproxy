@@ -3,6 +3,9 @@
 warn_list:
   - "106" # Role name {} does not match ``^[a-z][a-z0-9_]+$`` pattern
 
+skip_list:
+  - fqcn[action-core]
+
 exclude_paths:
   - tests
   - molecule
