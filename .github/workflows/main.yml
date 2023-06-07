@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        scenario:
+        platform:
           - debian11
           - debian10
           - debian9
@@ -34,6 +34,6 @@ jobs:
         with:
           molecule_options: --debug --base-config molecule/_shared/base.yml
           molecule_command: test
-          molecule_args: --scenario-name ${{ matrix.scenario }}
+          molecule_args: --platform-name ${{ matrix.platform }}
         env:
           ANSIBLE_FORCE_COLOR: "1"
