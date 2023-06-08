@@ -52,6 +52,7 @@ jobs:
           - debian11
           - debian10
           - rockylinux8
+          - rockylinux9
           - fedora37
           - fedora38
           - fedora39

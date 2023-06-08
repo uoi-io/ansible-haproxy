@@ -22,6 +22,11 @@ platforms:
     command: /sbin/init
     groups: [RedHat]
     privileged: true
+  - name: rockylinux9
+    image: rockylinux:9
+    command: /sbin/init
+    groups: [RedHat]
+    privileged: true
   # https://fedoraproject.org/wiki/Releases
   - name: fedora37
     image: fedora:37
