@@ -23,13 +23,18 @@ platforms:
     groups: [RedHat]
     privileged: true
   # https://fedoraproject.org/wiki/Releases
-  - name: f33
-    image: fedora:33
+  - name: fedora37
+    image: fedora:37
     command: /sbin/init
     groups: [RedHat]
     privileged: true
-  - name: f32
-    image: fedora:32
+  - name: fedora38
+    image: fedora:38
+    command: /sbin/init
+    groups: [RedHat]
+    privileged: true
+  - name: fedora39
+    image: fedora:39
     command: /sbin/init
     groups: [RedHat]
     privileged: true
@@ -63,11 +68,6 @@ provisioner:
         apache_service: httpd
         apache_ports: /etc/httpd/conf/httpd.conf
         apache_conf_d: /etc/httpd/conf.d
-    host_vars:
-      f33:
-        ansible_python_interpreter: python3
-      f32:
-        ansible_python_interpreter: python3
 scenario:
   name: default
   test_sequence:
