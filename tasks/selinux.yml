@@ -1,14 +1,14 @@
 ---
 # file: roles/haproxy/tasks/selinux.yml
 - name: Allowing HAproxy to listen on some TCP ports
-  seport:
+  community.general.seport:
     ports: "{{ haproxy_stats_port }}"
     proto: tcp
     setype: tor_port_t
     state: present
 
 - name: Enabling SELinux booleans for HAproxy
-  seboolean:
+  ansible.posix.seboolean:
     name: haproxy_connect_any
     state: true
     persistent: true

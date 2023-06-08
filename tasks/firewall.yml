@@ -4,8 +4,8 @@
 #       collection. This feature will be removed from community.general in version
 #       2.0.0.
 - name: HAproxy firewalld rule
-  firewalld:
-    port: '{{ item }}'
+  ansible.posix.firewalld:
+    port: "{{ item }}"
     permanent: true
     state: enabled
     immediate: true

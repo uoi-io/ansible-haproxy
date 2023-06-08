@@ -1,0 +1,80 @@
+---
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  yamllint:
+    name: yamllint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+
+      - name: Install test dependencies.
+        run: pip3 install yamllint
+
+      - name: Run yamllint
+        run: |
+          yamllint -s .
+
+  ansible-lint:
+    name: ansible-lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+
+      - name: Install test dependencies.
+        run: pip3 install ansible-lint
+
+      - name: Run ansible-lint
+        run: |
+          ansible-lint
+
+  molecule:
+    name: molecule
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        distro:
+          - debian11
+          - debian10
+          - rockylinux8
+          - rockylinux9
+          - fedora37
+          - fedora38
+          - fedora39
+          - ubuntu22.04
+          - ubuntu20.04
+          - ubuntu18.04
+
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+
+      - name: Install test dependencies.
+        run: pip3 install ansible molecule molecule-plugins[docker] docker pytest-testinfra
+
+      - name: Run Molecule tests.
+        run: molecule test -p ${MOLECULE_DISTRO}
+        env:
+          PY_COLORS: "1"
+          ANSIBLE_FORCE_COLOR: "1"
+          MOLECULE_DISTRO: ${{ matrix.distro }}
