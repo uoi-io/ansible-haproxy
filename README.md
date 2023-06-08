@@ -1,6 +1,6 @@
 # Ansible HAproxy (OpenStack ready)
 
-[![CI](https://github.com/uoi-io/ansible-haproxy/actions/workflows/ci.yml/badge.svg)](https://github.com/uoi-io/ansible-haproxy/actions/workflows/ci.yml)
+[![CI](https://github.com/uoi-io/ansible-haproxy/actions/workflows/ci.yml/badge.svg)](https://github.com/uoi-io/ansible-haproxy/actions/workflows/ci.yml) [![Ansible Galaxy](https://img.shields.io/badge/galaxy-uoi.haproxy-green.svg?style=flat)](https://galaxy.ansible.com/uoi-io/haproxy/)
 
 This role provides support for the installation of HAproxy on current distributions:
 
