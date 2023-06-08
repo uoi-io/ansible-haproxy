@@ -1,14 +1,13 @@
 # Ansible HAproxy (OpenStack ready)
 
-[![Build Status](https://travis-ci.com/uoi-io/ansible-haproxy.svg?branch=master)](https://travis-ci.com/uoi-io/ansible-haproxy) [![Ansible Galaxy](https://img.shields.io/badge/galaxy-uoi.haproxy-green.svg?style=flat)](https://galaxy.ansible.com/uoi-io/haproxy/)
+[![CI](https://github.com/uoi-io/ansible-haproxy/actions/workflows/ci.yml/badge.svg)](https://github.com/uoi-io/ansible-haproxy/actions/workflows/ci.yml) [![Ansible Galaxy](https://img.shields.io/badge/galaxy-uoi.haproxy-green.svg?style=flat)](https://galaxy.ansible.com/uoi-io/haproxy/)
 
 This role provides support for the installation of HAproxy on current distributions:
 
-- CentOS **7.x** / **8.x**
-- RedHat **7.x** / Not tested on **8.x** but should work
-- Fedora **33** / **34**
-- Debian **9.x** / **10.x** / **11.x**
-- Ubuntu **18.04** / **20.04**
+- Rocky Linux **8** / **9**
+- Fedora **37** / **38** / **39**
+- Debian **10** / **11**
+- Ubuntu **18.04** / **20.04** / **22.04**
 
 The role allows you to configure multiple sections of HAproxy:
 
