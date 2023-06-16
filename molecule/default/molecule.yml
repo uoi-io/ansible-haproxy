@@ -6,6 +6,12 @@ driver:
   name: docker
 platforms:
   # https://wiki.debian.org/DebianReleases
+  - name: debian12
+    image: debian:12-slim
+    command: sleep infinity
+    groups: [Debian]
+    privileged: true
+  # https://wiki.debian.org/DebianReleases
   - name: debian11
     image: debian:11-slim
     command: sleep infinity
