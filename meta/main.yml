@@ -4,7 +4,7 @@ galaxy_info:
   namespace: uoi
   role_name: haproxy
   description: Install and configure HAproxy
-  company: InCloudUs
+  company: Smart'Gic
   issue_tracker_url: https://github.com/uoi-io/ansible-haproxy/issues
   license: Apache
   min_ansible_version: "2.8"
@@ -12,20 +12,22 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-        - "7"
         - "8"
+        - "9"
     - name: Fedora
       versions:
-        - "32"
+        - "37"
+        - "38"
     - name: Ubuntu
       versions:
-        - xenial
         - bionic
         - focal
+        - jammy
     - name: Debian
       versions:
-        - stretch
         - buster
+        - bullseye
+        - bookworm
   galaxy_tags:
     - cloud
     - system
