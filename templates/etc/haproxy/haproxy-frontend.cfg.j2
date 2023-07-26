@@ -34,6 +34,11 @@ frontend {{ name }}
     option          {{ opt }}
                 {% endfor %}
             {% endif %}
+            {% if value.no_options is defined %}
+                {% for no_opt in value.no_options %}
+    no option       {{ no_opt }}
+                {% endfor %}
+            {% endif %}
             {% if value.acls is defined %}
                 {% for acl in value.acls %}
     acl             {{ acl }}
