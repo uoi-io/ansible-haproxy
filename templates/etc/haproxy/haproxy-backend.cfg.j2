@@ -39,6 +39,11 @@ backend {{ name }}
     option          {{ opt }}
                 {% endfor %}
             {% endif %}
+            {% if value.no_options is defined %}
+                {% for no_opt in value.no_options %}
+    no option       {{ no_opt }}
+                {% endfor %}
+            {% endif %}
             {% if value.time_outs is defined %}
                 {% for timeout in value.time_outs %}
     timeout          {{ timeout }}
