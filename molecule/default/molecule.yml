@@ -44,11 +44,6 @@ platforms:
     command: /sbin/init
     groups: [RedHat]
     privileged: true
-  - name: fedora39
-    image: fedora:39
-    command: /sbin/init
-    groups: [RedHat]
-    privileged: true
   # https://wiki.ubuntu.com/Releases
   - name: ubuntu22.04
     image: ubuntu:22.04
