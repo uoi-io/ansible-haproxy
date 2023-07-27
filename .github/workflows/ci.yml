@@ -56,7 +56,6 @@ jobs:
           - rockylinux9
           - fedora37
           - fedora38
-          - fedora39
           - ubuntu22.04
           - ubuntu20.04
           - ubuntu18.04
