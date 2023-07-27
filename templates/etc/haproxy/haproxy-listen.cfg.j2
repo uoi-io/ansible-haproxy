@@ -133,6 +133,9 @@ listen {{ name }}
     log-format      {{ log_format }}
                 {% endfor %}
             {% endif %}
+            {% if value.unique_id_format is defined %}
+    unique-id-format {{ value.unique_id_format }}
+            {% endif %}
         {% endfor %}
 
     {% endfor %}
