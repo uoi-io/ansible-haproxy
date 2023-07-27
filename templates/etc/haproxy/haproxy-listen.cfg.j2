@@ -136,6 +136,11 @@ listen {{ name }}
             {% if value.unique_id_format is defined %}
     unique-id-format {{ value.unique_id_format }}
             {% endif %}
+            {% if value.errorfiles is defined %}
+                {% for errorfile in value.errorfiles %}
+    errorfile       {{ errorfile }}
+                {% endfor %}
+            {% endif %}
         {% endfor %}
 
     {% endfor %}
