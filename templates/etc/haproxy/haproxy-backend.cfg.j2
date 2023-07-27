@@ -125,6 +125,11 @@ backend {{ name }}
     server          {{ srv }}
                 {% endfor %}
             {% endif %}
+            {% if value.errorfiles is defined %}
+                {% for errorfile in value.errorfiles %}
+    errorfile       {{ errorfile }}
+                {% endfor %}
+            {% endif %}
         {% endfor %}
 
     {% endfor %}
