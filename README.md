@@ -119,6 +119,7 @@ haproxy_default_errorfiles:
   - "403 {{ haproxy_errors_directory }}/403.http"
 haproxy_default_http_check:
 haproxy_default_monitor_uri:
+haproxy_default_unique_id_format:
 
 # Userlist
 haproxy_userlist:

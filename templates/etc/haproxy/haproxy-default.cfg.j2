@@ -42,3 +42,6 @@ defaults
 {% if haproxy_default_mode is defined and haproxy_default_mode | length > 0 %}
     mode        {{ haproxy_default_mode }}
 {% endif %}
+{% if haproxy_default_unique_id_format is defined and haproxy_default_unique_id_format | length %}
+    unique-id-format {{ haproxy_default_unique_id_format }}
+{% endif %}
