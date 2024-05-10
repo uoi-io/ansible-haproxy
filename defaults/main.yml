@@ -55,6 +55,7 @@ haproxy_global_logs:
 #   - 2 1
 haproxy_global_tunes:
   - tune.ssl.default-dh-param: 2048
+# haproxy_global_server_state_base: current
 
 # Default
 haproxy_default_logs:
@@ -83,6 +84,7 @@ haproxy_default_errorfiles:
 # haproxy_default_http_check:
 # haproxy_default_monitor_uri:
 # haproxy_default_unique_id_format:
+# haproxy_default_load_server_state_from_file: global
 
 # Stats
 haproxy_stats: true
