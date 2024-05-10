@@ -121,6 +121,9 @@ frontend {{ name }}
             {% if value.default_backend is defined %}
     default_backend {{ value.default_backend }}
             {% endif %}
+            {% if value.maxconn is defined %}
+    maxconn         {{ value.maxconn }}
+            {% endif %}
             {% if value.unique_id_format is defined %}
     unique-id-format {{ value.unique_id_format }}
             {% endif %}
