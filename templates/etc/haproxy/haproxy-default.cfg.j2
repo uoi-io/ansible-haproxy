@@ -46,5 +46,5 @@ defaults
     unique-id-format {{ haproxy_default_unique_id_format }}
 {% endif %}
 {% if haproxy_default_load_server_state_from_file is defined and haproxy_default_load_server_state_from_file|length %}
-    load-server-state-from-file {{ haproxy_default_load_server_state_from_file | default('global') }}
+    load-server-state-from-file {{ haproxy_default_load_server_state_from_file }}
 {% endif %}

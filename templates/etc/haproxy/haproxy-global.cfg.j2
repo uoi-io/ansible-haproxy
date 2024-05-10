@@ -77,5 +77,5 @@ global
     {% endfor %}
 {% endif %}
 {% if haproxy_global_server_state_base is defined %}
-    server-state-base {{ haproxy_global_server_state_base | default('current') }}
+    server-state-base {{ haproxy_global_server_state_base }}
 {% endif %}
