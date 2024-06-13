@@ -5,6 +5,8 @@
     src: etc/haproxy/haproxy.cfg.j2
     dest: "{{ haproxy_config }}"
     mode: "0640"
-    # FIXME: find a way to validate in Docker mode
+    # FIXME: below validate config file when system mode
+    # need to find a way to validate in Docker mode
     # validate: "{{ haproxy_bin }} -f %s -c"
+    validate: "{{ (haproxy_mode == 'system') | ternary(haproxy_bin ~ ' -f %s -c', omit) }}"
   notify: Reload haproxy
