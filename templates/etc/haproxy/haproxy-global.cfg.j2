@@ -79,6 +79,9 @@ global
 {% if haproxy_global_server_state_base is defined %}
     server-state-base {{ haproxy_global_server_state_base }}
 {% endif %}
+{% if haproxy_global_server_state_file is defined %}
+    server-state-file {{ haproxy_global_server_state_file }}
+{% endif %}
 {% if haproxy_global_toggles is defined and haproxy_global_toggles | length %}
     {% for toggle in haproxy_global_toggles %}
     {{ toggle }}
