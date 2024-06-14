@@ -59,7 +59,6 @@ haproxy_global_tunes:
 # haproxy_global_server_state_file: /tmp/server_state
 # haproxy_global_toggles: []
 
-
 # Default
 haproxy_default_logs:
   - global
