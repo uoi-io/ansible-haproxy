@@ -57,6 +57,8 @@ haproxy_global_tunes:
   - tune.ssl.default-dh-param: 2048
 # haproxy_global_server_state_base: current
 # haproxy_global_server_state_file: /tmp/server_state
+# haproxy_global_toggles: []
+
 
 # Default
 haproxy_default_logs:

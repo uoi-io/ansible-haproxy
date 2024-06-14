@@ -2,7 +2,7 @@
 #         GLOBAL         #
 ##########################
 global
-{% if haproxy_global_chroot is defined and haproxy_global_chroot|length %}
+{% if haproxy_global_chroot is defined and haproxy_global_chroot | length %}
     chroot     {{ haproxy_global_chroot | default('/var/lib/haproxy') }}
 {% endif %}
 {% if haproxy_global_daemon %}
@@ -26,50 +26,50 @@ global
 {% endif %}
     maxconn    {{ haproxy_global_maxconn | default('4000') }}
     pidfile    {{ haproxy_global_pidfile | default('/var/run/haproxy.pid') }}
-{% if haproxy_global_ca_base is defined and haproxy_global_ca_base|length %}
+{% if haproxy_global_ca_base is defined and haproxy_global_ca_base | length %}
     ca-base    {{ haproxy_global_ca_base }}
 {% endif %}
-{% if haproxy_global_crt_base is defined and haproxy_global_crt_base|length %}
+{% if haproxy_global_crt_base is defined and haproxy_global_crt_base | length %}
     crt-base   {{ haproxy_global_crt_base }}
 {% endif %}
-{% if haproxy_global_ssl_bind_options is defined and haproxy_global_ssl_bind_options|length %}
+{% if haproxy_global_ssl_bind_options is defined and haproxy_global_ssl_bind_options | length %}
     ssl-default-bind-options    {{ haproxy_global_ssl_bind_options }}
 {% endif %}
-{% if haproxy_global_ssl_bind_ciphers is defined and haproxy_global_ssl_bind_ciphers|length %}
+{% if haproxy_global_ssl_bind_ciphers is defined and haproxy_global_ssl_bind_ciphers | length %}
     ssl-default-bind-ciphers    {{ haproxy_global_ssl_bind_ciphers }}
 {% endif %}
-{% if haproxy_global_ssl_bind_ciphersuites is defined and haproxy_global_ssl_bind_ciphersuites|length %}
+{% if haproxy_global_ssl_bind_ciphersuites is defined and haproxy_global_ssl_bind_ciphersuites | length %}
     ssl-default-bind-ciphersuites    {{ haproxy_global_ssl_bind_ciphersuites }}
 {% endif %}
-{% if haproxy_global_ssl_server_options is defined and haproxy_global_ssl_server_options|length %}
+{% if haproxy_global_ssl_server_options is defined and haproxy_global_ssl_server_options | length %}
     ssl-default-server-options    {{ haproxy_global_ssl_server_options }}
 {% endif %}
-{% if haproxy_global_ssl_server_ciphers is defined and haproxy_global_ssl_server_ciphers|length %}
+{% if haproxy_global_ssl_server_ciphers is defined and haproxy_global_ssl_server_ciphers | length %}
     ssl-default-server-ciphers    {{ haproxy_global_ssl_server_ciphers }}
 {% endif %}
-{% if haproxy_global_ssl_server_ciphersuites is defined and haproxy_global_ssl_server_ciphersuites|length %}
+{% if haproxy_global_ssl_server_ciphersuites is defined and haproxy_global_ssl_server_ciphersuites | length %}
     ssl-default-server-ciphersuites    {{ haproxy_global_ssl_server_ciphersuites }}
 {% endif %}
-{% if haproxy_global_ssl_server_verify is defined and haproxy_global_ssl_server_verify|length %}
+{% if haproxy_global_ssl_server_verify is defined and haproxy_global_ssl_server_verify | length %}
     ssl-server-verify           {{ haproxy_global_ssl_server_verify }}
 {% endif %}
-{% if haproxy_global_stats is defined and haproxy_global_stats|length %}
+{% if haproxy_global_stats is defined and haproxy_global_stats | length %}
     {% for stat in haproxy_global_stats %}
     stats      {{ stat }}
     {% endfor %}
 {% endif %}
-{% if haproxy_global_description is defined and haproxy_global_description|length %}
+{% if haproxy_global_description is defined and haproxy_global_description | length %}
     description    {{ haproxy_global_description }}
 {% endif %}
 {% if haproxy_global_ulimit_n is defined and haproxy_global_ulimit_n > 0 %}
     ulimit-n   {{ haproxy_global_ulimit_n }}
 {% endif %}
-{% if haproxy_global_logs is defined and haproxy_global_logs|length %}
+{% if haproxy_global_logs is defined and haproxy_global_logs | length %}
     {% for log in haproxy_global_logs %}
     log        {{ log }}
     {% endfor %}
 {% endif %}
-{% if haproxy_global_tunes is defined and haproxy_global_tunes|length %}
+{% if haproxy_global_tunes is defined and haproxy_global_tunes | length %}
     {% for tune in haproxy_global_tunes %}
         {% for key, value in tune.items() %}
     {{ key }}    {{ value }}
@@ -81,4 +81,9 @@ global
 {% endif %}
 {% if haproxy_global_server_state_file is defined %}
     server-state-file {{ haproxy_global_server_state_file }}
+{% endif %}
+{% if haproxy_global_toggles is defined and haproxy_global_toggles | length %}
+    {% for toggle in haproxy_global_toggles %}
+    {{ toggle }}
+    {% endfor %}
 {% endif %}
