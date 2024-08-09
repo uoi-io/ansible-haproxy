@@ -44,6 +44,9 @@ frontend {{ name }}
     acl             {{ acl }}
                 {% endfor %}
             {% endif %}
+            {% if value.monitor_fail is defined %}
+    monitor fail    {{ value.monitor_fail }}
+            {% endif %}
             {% if value.monitor_uri is defined %}
     monitor-uri     {{ value.monitor_uri }}
             {% endif %}
