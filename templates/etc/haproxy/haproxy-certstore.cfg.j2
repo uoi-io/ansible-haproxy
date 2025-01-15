@@ -1,0 +1,22 @@
+{% if haproxy_certstore is defined and haproxy_certstore|length %}
+##########################
+#  Certificate Storage   #
+##########################
+    {% for dict_item in haproxy_certstore %}
+        {% for name, value in dict_item.items() %}
+crt-store {{ name }}
+            {% if value.crt_base is defined %}
+    crt-base            {{ value.crt_base }}
+            {% endif %}
+            {% if value.key_base is defined %}
+    key-base  {{ value.key_base }}
+            {% endif %}
+            {% if value.load is defined %}
+                {% for load in value.load %}
+    load            {{ load }}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+
+    {% endfor %}
+{% endif %}
