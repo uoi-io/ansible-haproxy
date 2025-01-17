@@ -25,7 +25,9 @@ global
     gid        {{ haproxy_global_gid }}
 {% endif %}
     maxconn    {{ haproxy_global_maxconn | default('4000') }}
+{% if ansible_os_family != 'Debian' %}
     pidfile    {{ haproxy_global_pidfile | default('/var/run/haproxy.pid') }}
+{% endif %}
 {% if haproxy_global_ca_base is defined and haproxy_global_ca_base | length %}
     ca-base    {{ haproxy_global_ca_base }}
 {% endif %}
@@ -52,6 +54,9 @@ global
 {% endif %}
 {% if haproxy_global_ssl_server_verify is defined and haproxy_global_ssl_server_verify | length %}
     ssl-server-verify           {{ haproxy_global_ssl_server_verify }}
+{% endif %}
+{% if haproxy_global_limited_quic is defined and haproxy_global_limited_quic is true %}
+    limited-quic
 {% endif %}
 {% if haproxy_global_stats is defined and haproxy_global_stats | length %}
     {% for stat in haproxy_global_stats %}
