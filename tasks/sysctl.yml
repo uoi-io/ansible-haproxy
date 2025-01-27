@@ -1,17 +1,22 @@
 ---
 # file: roles/haproxy/tasks/sysctl.yml
-- name: Enabling/Disabling net.ipv4.ip_nonlocal_bind option
+- name: Enabling/Disabling net.ipvX.ip_nonlocal_bind option
+  tags: [haproxy, haproxy-sysctl]
   ansible.posix.sysctl:
-    name: net.ipv4.ip_nonlocal_bind
+    name: "{{ item }}"
     value: "1"
     sysctl_file: /etc/sysctl.d/10-ip_nonlocal_bind.conf
     sysctl_set: true
     reload: true
     state: present
+  with_items:
+    - net.ipv4.ip_nonlocal_bind
+    - net.ipv6.ip_nonlocal_bind
   notify: Restart haproxy
   when: haproxy_bind_nonlocal_ip | bool
 
 - name: Enabling/Disabling net.ipv4.ip_forward option
+  # tags: [haproxy, haproxy-sysctl]
   ansible.posix.sysctl:
     name: net.ipv4.ip_forward
     value: "1"

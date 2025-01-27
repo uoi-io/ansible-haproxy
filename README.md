@@ -177,6 +177,21 @@ haproxy_ssl_options: no-sslv3 no-tls-tickets force-tlsv12
 haproxy_ssl_ciphers: AES128+EECDH:AES128+EDH
 haproxy_ssl: 'ssl crt {{ haproxy_ssl_certificate }} ciphers {{ haproxy_ssl_ciphers }} {{ haproxy_ssl_options }}'
 
+## Certificate Storage
+haproxy_certstore:
+  - web:
+      crt_base: /etc/ssl/
+      key_base: /etc/ssl/private/
+      load:
+        - crt "example.com_fullchain.crt" key "example.com.key" alias "example_com"
+  - internal:
+      crt_base: /etc/ssl/
+      key_base: /etc/ssl/private/
+      load:
+        - crt "example.de_fullchain.crt" key "example.de.key" alias "example_de"
+
+haproxy_ssl: 'tfo ssl crt "@web/example_com" alpn h2,http/1.1 ssl-min-ver TLSv1.2'
+
 # Docker
 # see more details in `tasks/docker.yml` and https://docs.ansible.com/ansible/latest/collections/community/general/docker_container_module.html
 haproxy_docker_name: "haproxy"

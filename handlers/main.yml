@@ -4,10 +4,10 @@
   ansible.builtin.service:
     name: "{{ haproxy_service }}"
     state: restarted
-  when: haproxy_mode == "system"
+  when: haproxy_mode == "system" or haproxy_mode == "custom"
 
 - name: Reload haproxy
   ansible.builtin.service:
     name: "{{ haproxy_service }}"
     state: reloaded
-  when: haproxy_mode == "system"
+  when: haproxy_mode == "system" or haproxy_mode == "custom"

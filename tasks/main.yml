@@ -33,7 +33,7 @@
 - name: Sysctl
   include_tasks: sysctl.yml
   tags: [haproxy, haproxy-sysctl]
-  when: haproxy_mode == "system"
+  when: haproxy_mode == "system" or haproxy_mode == "custom"
 
 - name: Docker
   include_tasks: docker.yml
