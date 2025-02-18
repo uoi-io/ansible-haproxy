@@ -1,4 +1,9 @@
 ---
+- name: HAProxy - create a Docker network
+  community.docker.docker_network:
+    name: "{{ haproxy_docker_network_name }}"
+    state: present
+    
 - name: HAProxy - run a Docker container
   community.docker.docker_container:
     # common settings
@@ -24,7 +29,8 @@
           - "{{ inventory_hostname }}"
     networks_cli_compatible: true
     ports: "{{ haproxy_docker_ports }}"
-    purge_networks: true
+    comparisons:
+      networks: strict
     # persistent volumes
     volumes: "{{ haproxy_docker_volumes | default([haproxy_config + ':/usr/local/etc/haproxy/haproxy.cfg:ro']) }}"
     # runtime settings
