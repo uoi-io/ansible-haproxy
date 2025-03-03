@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the codebase.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python 3.
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: "3.x"
 
@@ -29,10 +29,10 @@ jobs:
 
     steps:
       - name: Check out the codebase.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python 3.
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: "3.x"
 
@@ -51,26 +51,24 @@ jobs:
         distro:
           - debian12
           - debian11
-          - debian10
-          - rockylinux8
           - rockylinux9
           - fedora37
           - fedora38
           - ubuntu22.04
           - ubuntu20.04
-          - ubuntu18.04
 
     steps:
       - name: Check out the codebase.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python 3.
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: "3.x"
 
       - name: Install test dependencies.
-        run: pip3 install ansible molecule molecule-plugins[docker] docker pytest-testinfra
+        # TODO: we specify version as newer break the tests
+        run: pip3 install ansible 'molecule<=24' 'molecule-plugins[docker]<=23.7' pytest-testinfra
 
       - name: Run Molecule tests.
         run: molecule test -p ${MOLECULE_DISTRO}
