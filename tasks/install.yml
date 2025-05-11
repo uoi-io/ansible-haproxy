@@ -12,3 +12,4 @@
     name: "{{ haproxy_service }}"
     state: started
     enabled: true
+  ignore_errors: true
