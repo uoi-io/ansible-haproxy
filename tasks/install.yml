@@ -6,10 +6,3 @@
 - name: Include Generic tasks
   include_tasks: install-Generic.yml
   when: ansible_os_family != 'Debian'
-
-- name: Enabling and starting HAproxy service
-  ansible.builtin.service:
-    name: "{{ haproxy_service }}"
-    state: started
-    enabled: true
-  ignore_errors: true
